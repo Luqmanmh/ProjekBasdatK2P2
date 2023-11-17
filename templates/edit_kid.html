@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block title %}Edit Children Data{% endblock title %}
+{% block content %}
+<a href="/children/">Return</a>
+    <h1>Add Child</h1>
+    <form method='post' action='/push_edit_kid/'>
+        {% csrf_token %}
+        <fieldset style="width: 30rem;">
+            <input type="hidden" id="kidid" name="kidid" value="{{ch.child_id}}">
+    
+            <label for="kidname"> Name:</label>
+            <input type="text" id="kidname" name="kidname" value="{{ch.child_name}}">
+            <br> <br>
+    
+            <label for="kidage"> Birthday:</label>
+            <input type="date" id="kidage" name="kidage" value="{{ch.child_birth|date:'Y-m-d'}}">
+            <br> <br>
+    
+            <label for="kidgend"> Gender:</label>
+            <label><input type="radio" name="kidgend" id="kidgend" value="m" {% if ch.child_gender == "m" %} checked {% endif %}>Male</label>
+            <label><input type="radio" name="kidgend" id="kidgend" value="f" {% if ch.child_gender == "f" %} checked {% endif %}>Female</label>
+            <br> <br>
+    
+            <label for="kidill"> Illness records</label>
+            <br>
+            <textarea name="kidill" id="kidill" cols="30" rows="5">{{ch.disease}}</textarea>
+            <br> <br>
+    
+            <label for="prid"> Parent ID:</label>
+            <select name="prid" id="prid">
+                {% for i in pr %}
+                <option value="{{i.parent_id}}" {% if i.parent_id == ch.parent_id %} selected {% endif %}>{{i.parent_id}} - {{i.m_name}} & {{i.f_name}} </option>
+                {% endfor %}
+            </select>
+            <br> <br>
+    
+            <label for="empid"> Care Taker ID:</label>
+            <select name="empid" id="empid">
+                {% for i in em %}
+                <option value="{{i.employee_id}}" {% if i.employee_id == ch.care_taker_id %} selected {% endif %}>{{i.employee_id}} - {{i.employee_name}}</option>
+                {% endfor %}
+            </select>
+            <br> <br>
+    
+            <label for="droptime">Dropoff Time</label>
+            <input type="time" name="droptime" id="droptime" value="{{ch.in_time|time:'h:i'}}">
+            <br> <br>
+    
+            <label for="picktime">Pickup Time</label>
+            <input type="time" name="picktime" id="picktime" value="{{ch.out_time|time:'h:i'}}">
+            <br> <br>
+            
+            <input type="submit" id="kidsubmit">
+        </fieldset>
+
+    </form>
+{% endblock content %}

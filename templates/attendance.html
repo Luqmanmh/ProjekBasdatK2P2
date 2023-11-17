@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}Edit Child Attendance{% endblock title %}
+{% block content %}
+<a href="bastards.html">Return</a>
+<h1>Edit Child Attendance</h1>
+<form method="post" action="/push_att_kid/">
+    {% csrf_token %}
+    <fieldset style="width: 30rem;">
+        <input type="hidden" id="kidid" name="kidid" value="{{ch.child_id}}">
+        <p>Name: {{ch.child_name}} </p>
+
+        <label for="droptime">Dropoff Time</label>
+        <input type="time" name="droptime" id="droptime" value="{{ch.in_time|time:'H:i'}}">
+        <br> <br>
+
+        <label for="picktime">Pickup Time</label>
+        <input type="time" name="picktime" id="picktime" value="{{ch.out_time|time:'H:i'}}">
+        <br> <br>
+
+        <label for="kidatt"> Attendance:</label>
+        <label><input type="radio" name="kidatt" id="kidatt" value="yes" {% if ch.in_con == "yes" %} checked {% endif %}>Yes</label>
+        <label><input type="radio" name="kidatt" id="kidatt" value="no" {% if ch.in_con == "no" %} checked {% endif %}>No</label>
+        <br> <br>
+        
+        <input type="submit" id="empsubmit" value="Submit">
+    </fieldset>
+
+</form>
+{% endblock content %}

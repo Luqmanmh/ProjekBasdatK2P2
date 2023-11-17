@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}Add Supply{% endblock title %}
+{% block content %}
+<a href="/logistics/">Return</a>
+<h1>Add Supply</h1>
+<form method="post" action="/push_add_supply/">
+    {% csrf_token %}
+    <fieldset style="width: 30rem;">
+        <label for="suppid"> ID:</label>
+        <input type="text" id="suppid" name="suppid">
+        <br> <br>
+        <label for="suppname"> Name:</label>
+        <input type="text" id="suppname" name="suppname">
+        <br> <br>
+        <label for="suppamt"> Amount:</label>
+        <input type="text" id="suppamt" name="suppamt" min="0" max="1000">
+        <br> <br>
+        <label for="suppresp"> Responsible:</label>
+        <select name="suppresp" id="suppresp">
+            <option selected disabled hidden>Select<option>
+            {% for i in em %}
+            <option value="{{i.employee_id}}">{{i.employee_id}} - {{i.employee_name}}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+        <input type="submit" id="itemsubmit" value="Submit">
+    </fieldset>
+</form>
+{% endblock content %}

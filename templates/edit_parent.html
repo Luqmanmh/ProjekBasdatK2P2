@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}Edit Parent Data{% endblock title %}
+{% block content %}
+<a href="/parent/">Return</a>
+<h1>Add Parent</h1>
+<form method="post" action="/push_edit_pr/">
+    {% csrf_token %}
+    <fieldset style="width: 30rem;">
+        <input type="hidden" id="prid" name="prid" value="{{pr_1.parent_id}}">
+
+        <label for="prmname"> Mother Name:</label>
+        <input type="text" id="prmname" name="prmname" value="{{pr_1.m_name}}">
+        <br> <br>
+
+        <label for="prmph">Phone Number:</label>
+        <input type="tel" name="prmph" id="prmph" value="{{pr_1.m_phone}}"placeholder="081234567891" maxlength="12">
+        <br> <br>
+
+        <label for="prfname"> Father Name:</label>
+        <input type="text" id="prfname" name="prfname" value="{{pr_1.f_name}}">
+        <br> <br>
+
+        <label for="prfph">Phone Number:</label>
+        <input type="tel" name="prfph" id="prfph" value="{{pr_1.f_phone}}" placeholder="081234567891" maxlength="12">
+        <br> <br>
+
+        <label for="praddr">Address:</label>
+        <br>
+        <textarea name="praddr" id="praddr" cols="30" rows="5">{{pr_1.parent_address}}</textarea>
+        <br> <br>
+
+        <input type="submit" id="empsubmit" value="Submit">
+    </fieldset>
+
+</form>
+{% endblock content %}

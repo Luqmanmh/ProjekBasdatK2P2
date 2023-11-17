@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/styleem.css' %}">
+{% endblock %}
+{% block title %}Employee Panel{% endblock title %}
+{% block content %}
+<nav>
+    <ul>
+        <li class="logo">thitiphan</li>
+    </ul>
+    <ul>
+        <li class="moto"> Karena semua hanyalah titipan</li>
+    </ul>
+</nav>
+
+<section id="tableall">
+    <div class="linksl">
+        <a class="retbtn" href="/inner">Return</a>
+    </div>
+    <h1>daycare employee</h1>
+    <table>
+        <tr>
+            <th>employee id</th>
+            <th>Employee Name</th>
+            <th>Birthday</th>
+            <th>Gender</th>
+            <th class="spad">Address</th>
+            <th>Phone</th>
+            <th>department</th>
+            <th>Actions</th>
+        </tr>
+        {% for i in em_dt %}
+        <tr>
+            <td>{{i.employee_id}}</td>
+            <td>{{i.employee_name}}</td>
+            <td>{{i.employee_birth}}</td>
+            <td>{{i.employee_gender}}</td>
+            <td class="spad">{{i.employee_address}}</td>
+            <td>{{i.employee_phone}}</td>
+            <td>{{i.employee_department}}</td>
+            <td class="spact"><a class="retbtn" href="/deleteem/{{i.employee_id}}">Erase</a> <a class="spbtn" href="/editem/{{i.employee_id}}">Edit</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    <div class="linksl">
+        <a class="spbtn" href="/add_employee/">Add New Employee</a>
+    </div>
+</section>
+
+{% endblock content %}

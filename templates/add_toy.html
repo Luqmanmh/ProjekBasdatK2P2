@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}Add Toy{% endblock title %}
+{% block content %}
+<a href="/logistics/">Return</a>
+<h1>Add Toy</h1>
+<form method="post" action="/push_add_toy/">
+    {% csrf_token %}
+    <fieldset style="width: 30rem;">
+        <label for="toyid"> ID:</label>
+        <input type="text" id="toyid" name="toyid">
+        <br> <br>
+        <label for="toyname"> Name:</label>
+        <input type="text" id="toyname" name="toyname">
+        <br> <br>
+        <label for="toyresp"> Responsible:</label>
+        <select name="toyresp" id="toyresp">
+            <option selected disabled hidden>Select<option>
+            {% for i in em %}
+            <option value="{{i.employee_id}}">{{i.employee_id}} - {{i.employee_name}}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+        <input type="hidden" name="toycon" value="good">
+        <input type="submit" id="toysubmit" value="Submit">
+    </fieldset>
+</form>
+{% endblock content %}

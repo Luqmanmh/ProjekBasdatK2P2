@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}Parent Detail{% endblock title %}
+{% block content %}
+<div class="retbtn"><a href="/children/">Return</a></div>
+<h1>Parent Detail</h1>
+<section id="prtable">
+    <h1>P23001</h1>
+    <table border="1">
+        <tr>
+            <th>Parent id</th>
+            <th>mother</th>
+            <th>Mother Number</th>
+            <th>Father</th>
+            <th>Father Number</th>
+            <th>Address</th>
+            <th>Actions</th>
+        </tr>
+        <tr>
+            <td>{{pr_1.parent_id}}</td>
+            <td>{{pr_1.m_name}}</td>
+            <td>{{pr_1.m_phone}}</td>
+            <td>{{pr_1.f_name}}</td>
+            <td>{{pr_1.f_phone}}</td>
+            <td>{{pr_1.parent_address}}</td>
+            <td>Erase | Edit</td>
+        </tr>
+    </table>
+</section>
+{% endblock content %}

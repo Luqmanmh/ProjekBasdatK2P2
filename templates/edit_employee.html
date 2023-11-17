@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}Edit Employee Data{% endblock title %}
+{% block content %}
+<a href="/employee/">Return</a>
+<h1>Edit Employee Data</h1>
+<form method="post" action="/push_edit_em/">
+    {% csrf_token %}
+    <fieldset style="width: 30rem;">
+        <input type="hidden" id="empid" name="empid" value="{{em.employee_id}}">
+
+        <label for="empname"> Name:</label>
+        <input type="text" id="empname" name="empname" value="{{em.employee_name}}">
+        <br> <br>
+        
+        <label for="empage"> Birthday:</label>
+        <input type="date" id="empage" name="empage" value="{{em.employee_birth|date:'Y-m-d'}}">
+        <br> <br>
+
+        <label for="empgend"> Gender:</label>
+        <label><input type="radio" name="empgend" id="empgend" value="m" {% if em.employee_gender == "m" %} checked {% endif %}>Male</label>
+        <label><input type="radio" name="empgend" id="empgend" value="f" {% if em.employee_gender == "f" %} checked {% endif %}>Female</label>
+        <br> <br>
+
+        <label for="empaddr">Address:</label>
+        <br>
+        <textarea name="empaddr" id="empaddr" cols="30" rows="5">{{em.employee_address}}</textarea>
+        <br> <br>
+
+        <label for="empph">Phone Number:</label>
+        <input type="tel" name="empph" id="empph" value="{{em.employee_phone}}" maxlength="12">
+        <br> <br>
+
+        <label for="empdp"> Department:</label>
+        <label><input type="radio" name="empdp" id="empdp" value="Care Taker" {% if em.employee_department == "Care Taker" %} checked {% endif %}>Care Taker</label>
+        <label><input type="radio" name="empdp" id="empdp" value="Logistics" {% if em.employee_department == "Logistics" %} checked {% endif %}>Logistics</label>
+        <br> <br>
+        
+        <input type="submit" id="empsubmit" value="Submit">
+    </fieldset>
+
+</form>
+{% endblock content %}

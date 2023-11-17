@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}Add Employee{% endblock title %}
+{% block content %}
+<a href="/employee/">Return</a>
+<h1>Add Employee</h1>
+<form method="post" action="/push_add_employee/">
+    {% csrf_token %}
+    <fieldset style="width: 30rem;">
+        <label for="empid"> ID:</label>
+        <input type="text" id="empid" name="empid">
+        <br> <br>
+
+        <label for="empname"> Name:</label>
+        <input type="text" id="empname" name="empname">
+        <br> <br>
+        
+        <label for="empage"> Birthday:</label>
+        <input type="date" id="empage" name="empage">
+        <br> <br>
+
+        <label for="empgend"> Gender:</label>
+        <label><input type="radio" name="empgend" id="empgend" value="m">Male</label>
+        <label><input type="radio" name="empgend" id="empgend" value="f">Female</label>
+        <br> <br>
+
+        <label for="empaddr">Address:</label>
+        <br>
+        <textarea name="empaddr" id="empaddr" cols="30" rows="5"></textarea>
+        <br> <br>
+
+        <label for="empph">Phone Number:</label>
+        <input type="tel" name="empph" id="empph" placeholder="081234567891" maxlength="12">
+        <br> <br>
+
+        <label for="empdp"> Department:</label>
+        <label><input type="radio" name="empdp" id="empdp" value="Care Taker">Care Taker</label>
+        <label><input type="radio" name="empdp" id="empdp" value="Logistics">Logistics</label>
+        <br> <br>
+        
+        <input type="submit" id="empsubmit" value="Submit">
+    </fieldset>
+
+</form>
+{% endblock content %}
