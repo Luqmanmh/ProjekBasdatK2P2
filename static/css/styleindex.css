@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: 'Montserrat', sans-serif;
 }
 
 body {
@@ -23,6 +24,20 @@ ul {
     list-style-type: none;
 }
 
+button {
+    box-sizing: border-box;
+    outline: none;
+    margin: auto;
+    border: 2px solid rgb(255, 255, 255);
+    background: rgba(187, 212, 230, 0.90);
+    color: black;
+    border-radius: 1rem;
+    font-size: 1.3rem;
+    width: 31rem;
+    height: 5rem;
+    margin: 1.5rem 3rem 1rem 3rem;
+}
+
 #halaman {
     margin: auto;
     align-items: center;
@@ -39,9 +54,23 @@ ul {
     height: 100%;
 }
 
+.moto {
+    margin-right: 2rem;
+    text-align: right;
+    color: rgba(0.76, 85.26, 146.45, 0.90);
+    font-size: 25px;
+    font-size: 1.5625rem;
+    font-style: normal;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    word-wrap: break-word;
+    width: 15rem;
+    height: 100%;
+}
+
 .logo1 {
     color: white;
-    font-size: 50px;
+    font-size: 70px;
     font-family: 'Pad Thai', sans-serif;
     font-weight: 400;
     word-wrap: break-word;
@@ -51,8 +80,8 @@ ul {
 }
 
 .data {
-    font-family: 'Noto Sans', sans-serif;
-    font-size: 1.5625rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3rem;
     font-style: normal;
     color: white;
     font-size: 20px;
@@ -60,36 +89,6 @@ ul {
     word-wrap: break-word;
     margin-bottom: 2rem;
 
-}
-
-.moto {
-    margin-right: 2rem;
-    text-align: right;
-    color: rgba(0.76, 85.26, 146.45, 0.90);
-    font-size: 25px;
-    font-size: 1.5625rem;
-    font-style: normal;
-    font-family: 'Noto Sans', sans-serif;
-    font-weight: 600;
-    word-wrap: break-word;
-    width: 15rem;
-    height: 100%;
-}
-
-
-
-button {
-    box-sizing: border-box;
-    outline: none;
-    margin: auto;
-    border: 2px solid rgb(255, 255, 255);
-    background: rgba(187, 212, 230, 0.90);
-    color: black;
-    border-radius: 2rem;
-    font-size: 16px;
-    width: 31rem;
-    height: 5rem;
-    margin: 1.5rem 3rem 1rem 3rem;
 }
 
 .impbtn {
@@ -113,8 +112,13 @@ button {
     display: flex;
 }
 
+.button a{
+    font-family: 'Montserrat', sans-serif;
+}
+
 .inbtn{
-    font-family: 'Noto Sans', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
 }
 
 .inbtn:hover {

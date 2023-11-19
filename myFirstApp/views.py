@@ -7,9 +7,11 @@ def index(request):
 
 def inner(request):
     return render(request, 'inner.html')
+def regch(request):
+    return render(request, 'regch.html')
 
 def children(request):
-    ch_in = child.objects.filter(in_con = "yes").order_by("child_id")
+    ch_in = child.objects.filter(in_con = "Ya").order_by("child_id")
     ch_all = child.objects.all().order_by("child_id")
     table1 = []
 
@@ -37,7 +39,7 @@ def children(request):
         'table1': table1,
         'table2': table2,
     }
-    return render(request, 'bastards.html', context)
+    return render(request, 'children.html', context)
 
 def employees(request):
     em_dt = employee.objects.all().order_by("employee_id")
@@ -96,7 +98,7 @@ def parents(request):
     return render(request, 'parent.html', context)
 
 def add_child(request):
-    em = employee.objects.filter(employee_department = "Care Taker")
+    em = employee.objects.filter(employee_department = "Pengasuh")
     pr = parent.objects.all()
     context = {
         "pr":pr,
@@ -111,30 +113,32 @@ def add_employee(request):
     return render(request, 'add_employee.html')
 
 def add_item(request):
-    em = employee.objects.filter(employee_department = "Logistics")
+    em = employee.objects.filter(employee_department = "Logistik")
     context = {
         "em":em
     }
     return render(request, 'add_item.html', context)
 
 def add_supply(request):
-    em = employee.objects.filter(employee_department = "Logistics")
+    em = employee.objects.filter(employee_department = "Logistik")
     context = {
         "em":em
     }
     return render(request, 'add_supply.html', context)
 
 def add_toy(request):
-    em = employee.objects.filter(employee_department = "Logistics")
+    em = employee.objects.filter(employee_department = "Logistik")
     context = {
         "em":em
     }
     return render(request, 'add_toy.html', context)
 
-def parent_1(request, parent_id):
-    pr_1 = parent.objects.get(parent_id = parent_id)
+def parent_1(request, ch_id):
+    ch = child.objects.get(child_id = ch_id)
+    pr_1 = parent.objects.get(parent_id = ch.parent_id)
     context = {
-        "pr_1": pr_1
+        "ch":ch,
+        "pr": pr_1,
     }
     return render(request, 'parentone.html', context)
 
@@ -315,7 +319,7 @@ def push_edit_em(request):
 
 def edit_kid(request, ch_id):
     ch = child.objects.get(child_id = ch_id)
-    em = employee.objects.filter(employee_department = "Care Taker")
+    em = employee.objects.filter(employee_department = "Pengasuh")
     pr = parent.objects.all()
     context = {
         "ch": ch,
@@ -349,7 +353,7 @@ def push_edit_kid(request):
 
 def edit_eq(request, eq_id):
     eq = equipment.objects.get(equipment_id = eq_id)
-    em = employee.objects.filter(employee_department = "Logistics")
+    em = employee.objects.filter(employee_department = "Logistik")
     context = {
         'eq': eq,
         "em":em
@@ -372,7 +376,7 @@ def push_edit_eq(request):
 
 def edit_toy(request, toy_id):
     toys = toy.objects.get(toy_id = toy_id)
-    em = employee.objects.filter(employee_department = "Logistics")
+    em = employee.objects.filter(employee_department = "Logistik")
     context = {
         'toy': toys,
         "em":em
@@ -395,7 +399,7 @@ def push_edit_toy(request):
 
 def edit_supp(request, supp_id):
     supp = supply.objects.get(supply_id = supp_id)
-    em = employee.objects.filter(employee_department = "Logistics")
+    em = employee.objects.filter(employee_department = "Logistik")
     context = {
         'sp': supp,
         "em": em

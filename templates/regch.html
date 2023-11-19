@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/styleinner.css' %}">
+{% endblock %}
+{% block title %}database Anak{% endblock %}
+{% block content %}
+  <nav>
+    <ul>
+      <li class="logo">thitiphan</li>
+    </ul>
+    <ul>
+      <li class="moto">
+        Karena semua hanyalah titipan
+      </li>
+    </ul>
+  </nav>
+  <section id="main">
+    <div class="text">
+      <p class="data">karena semua hanyalah</p>
+      <p class="logo1">thitiphan</p>
+    </div>
+    <div class="impbtn">
+      <div class="content">
+        <div class="button">
+          <a href="/children/">
+            <button class="inbtn">
+              <i class="fa-solid fa-children"></i>
+              Anak
+            </button>
+          </a>
+        </div>
+        <div class="button">
+          <a href="/parent/">
+            <button class="inbtn">
+              <i class="fa-solid fa-person-cane"></i>
+              Orangtua
+            </button>
+          </a>
+        </div>
+      </div>
+      <div class="retbutn">
+        <a class="retbtn" href="/">Kembali</a>
+      </div>
+    </div>
+  </section>
+{% endblock %}

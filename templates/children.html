@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/stylekidl.css' %}">
+{% endblock %}
+{% block title %}Panel Anak{% endblock title %}
+{% block content %}
+<nav>
+    <ul>
+        <li class="logo">thitiphan</li>
+    </ul>
+    <ul>
+        <li class="moto">Karena semua hanyalah titipan</li>
+    </ul>
+</nav>
+<section id="tableall">
+    <div class="linksl">
+        <a class="retbtn" href="/chdb/">Kembali</a>
+    </div>
+    <div class="atndtable">
+        <h1>Tabel Anak-Anak Hadir</h1>
+        <br>
+        <table>
+            <tr>
+                <th>Id Anak</th>
+                <th>Nama</th>
+                <th>Tanggal Lahir</th>
+                <th>Jenis Kelamin</th>
+                <th>Riwayat Penyakit</th>
+                <th>Orangtua</th>
+                <th>Pengasuh</th>
+                <th>Waktu Dropoff </th>
+                <th>Waktu Pickup</th>
+                <th class="spacta">Actions</th>
+            </tr>
+            {% for i in table2 %}
+            <tr>
+                <td>{{i.childs.child_id}}</td>
+                <td>{{i.childs.child_name}}</td>
+                <td>{{i.childs.child_birth}}</td>
+                <td>{{i.childs.child_gender}}</td>
+                <td class="ill">{{i.childs.disease}}</td>
+                <td><a class="spbtn" href="/parentone/{{i.childs.child_id}}">{{i.childs.parent_id}}</a></td>
+                <td>{{i.employees.employee_name}}</td>
+                <td>{{i.childs.in_time|time:'H:i'}}</td>
+                <td>{{i.childs.out_time|time:'H:i'}}</td>
+                <td class="spacta"><a class="spbtn" href="/attendance/{{i.childs.child_id}}">Kehadiran<a> <a class="spbtn" href="/editch/{{i.childs.child_id}}">Edit</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <br>
+    <div class="alltable">
+        <h1>Tabel Semua Anak</h1>
+        <br>
+        <table class='table2'>
+            <tr>
+                <th>Id Anak</th>
+                <th>Nama</th>
+                <th>Tanggal Lahir</th>
+                <th>Jenis Kelamin</th>
+                <th class="ill">Riwayat Penyakit</th>
+                <th>Orangtua</th>
+                <th>Pengasuh</th>
+                <th>Waktu Dropoff </th>
+                <th>Waktu Pickup</th>
+                <th>Kehadiran</th>
+                <th class="spact">Actions</th>
+            </tr>
+            {% for i in table1 %}
+            <tr>
+                <td>{{i.childs.child_id}}</td>
+                <td>{{i.childs.child_name}}</td>
+                <td>{{i.childs.child_birth}}</td>
+                <td>{{i.childs.child_gender}}</td>
+                <td class="ill">{{i.childs.disease}}</td>
+                <td><a class="spbtn" href="/parentone/{{i.childs.child_id}}">{{i.childs.parent_id}}</a></td>
+                <td>{{i.employees.employee_name}}</td>
+                <td>{{i.childs.in_time|time:'H:i'}}</td>
+                <td>{{i.childs.out_time|time:'H:i'}}</td>
+                <td>{{i.childs.in_con}}</td>
+                <td class="spact"><a class="spbtn" href="/attendance/{{i.childs.child_id}}">Kehadiran<a> <a class="spbtn" href="/editch/{{i.childs.child_id}}">Edit</a> <br> <br> <a class="retbtn" href="/deletech/{{i.childs.child_id}}">Hapus</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="linksl">
+        <a class="spbtn" href="/add_child/">Tambah Anak Baru</a>
+    </div>
+
+</section>
+
+{% endblock content %}

@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: 'Montserrat', sans-serif;
 }
 
 body {
@@ -16,10 +17,9 @@ nav {
     display: flex;
     justify-content: space-between;
     background: white;
-    margin: 0 0 3rem 0;
+    margin: 0;
     padding: .5rem 3rem 0rem 3rem;
-    font-size: 1em;
-}
+} 
 
 ul {
     list-style-type: none;
@@ -61,10 +61,9 @@ a {
     border: 2rem solid white;
     background-color: white;
     border-radius: 1.25rem;
-    margin: 0 3rem 0 3rem;
+    margin: 3rem auto 0 auto;
     padding: 0 0.5rem 0 0.5rem;
     display: block;
-    margin: auto;
     align-items: center;
     text-align: center;
 }
@@ -80,13 +79,13 @@ a {
 }
 
 .moto {
-    margin-right: 2rem;
+    margin-right: .95rem;
     text-align: right;
     color: rgba(0.76, 85.26, 146.45, 0.90);
     font-size: 25px;
     font-size: 1.5625rem;
     font-style: normal;
-    font-family: 'Noto Sans', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     word-wrap: break-word;
     width: 15rem;
@@ -94,11 +93,19 @@ a {
 }
 
 .ill {
-    width: 10rem;
+    width: 15rem;
 }
 
 .spact {
-    width: 13rem;
+    width: 20rem;
+}
+
+.spacta {
+    width: 11rem;
+}
+
+.table2 td {
+    height: 7rem;
 }
 
 .linksl {

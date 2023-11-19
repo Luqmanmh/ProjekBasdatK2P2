@@ -1,61 +1,82 @@
 {% extends 'base.html' %}
-{% block title %}Add Child{% endblock title %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/style_add_kid.css' %}">
+{% endblock %}
+{% block title %}Tambah Data Anak{% endblock title %}
 {% block content %}
-<a href="/children">Return</a>
-<h1>Add Child</h1>
-<form method="post" action="/push_add_kid/">
-    {% csrf_token %}
-    <fieldset style="width: 30rem;">
-        <label for="kidid"> ID:</label>
-        <input type="text" id="kidid" name="kidid">
-        <br> <br>
+<nav>
+    <ul>
+        <li class="logo">thitiphan</li>
+    </ul>
+    <ul>
+        <li class="moto"> Karena semua hanyalah titipan</li>
+    </ul>
+</nav>
+<section id="main">
+    <div class="linksl">
+        <a class="retbtn" href="/children/">Kembali</a>
+    </div>
+    <h1><i class="fa-solid fa-circle-plus"></i> Tambah Data Anak</h1>
+    <form method="post" action="/push_add_kid/">
+        {% csrf_token %}
+        <div>
+            <label for="kidid">ID:</label>
+            <input type="text" id="kidid" name="kidid">
+            <br> <br>
 
-        <label for="kidname"> Name:</label>
-        <input type="text" id="kidname" name="kidname">
-        <br> <br>
+            <label for="kidname">Nama:</label>
+            <input type="text" id="kidname" name="kidname">
+            <br> <br>
 
-        <label for="kidage"> Birthday:</label>
-        <input type="date" id="kidage" name="kidage">
-        <br> <br>
+            <label for="kidage">Tanggal Lahir:</label>
+            <input type="date" id="kidage" name="kidage">
+            <br> <br>
 
-        <label for="kidgend"> Gender:</label>
-        <label><input type="radio" name="kidgend" id="kidgend" value="m">Male</label>
-        <label><input type="radio" name="kidgend" id="kidgend" value="f">Female</label>
-        <br> <br>
+            <label for="kidgend">Jenis Kelamin:</label>
+            <select id="kidgend" name="kidgend">
+                <option selected disabled hidden>Select<option>
+                <option value="L">Laki-Laki</option>
+                <option value="P">Perempuan</option>
+            </select>
+            <br> <br>
 
-        <label for="kidill"> Illness records</label>
-        <br>
-        <textarea name="kidill" id="kidill" cols="30" rows="5"></textarea>
-        <br> <br>
+            <label for="kidill">Riwayat Penyakit</label>
+            <br>
+            <textarea name="kidill" id="kidill" cols="30" rows="3"></textarea>
+            <br> <br>
+        </div>
+        <div>
+            <label for="prid">ID Orangtua:</label>
+            <select name="prid" id="prid">
+                <option selected disabled hidden>Select<option>
+                {% for i in pr %}
+                <option value="{{i.parent_id}}">{{i.parent_id}} - {{i.m_name}} & {{i.f_name}} </option>
+                {% endfor %}
+            </select>
+            <br> <br>
 
-        <label for="prid"> Parent ID:</label>
-        <select name="prid" id="prid">
-            <option selected disabled hidden>Select<option>
-            {% for i in pr %}
-            <option value="{{i.parent_id}}">{{i.parent_id}} - {{i.m_name}} & {{i.f_name}} </option>
-            {% endfor %}
-        </select>
-        <br> <br>
+            <label for="empid">ID Pengasuh:</label>
+            <select name="empid" id="empid">
+                <option selected disabled hidden>Select<option>
+                {% for i in em %}
+                <option value="{{i.employee_id}}">{{i.employee_id}} - {{i.employee_name}}</option>
+                {% endfor %}
+            </select>
+            <br> <br>
 
-        <label for="empid"> Care Taker ID:</label>
-        <select name="empid" id="empid">
-            <option selected disabled hidden>Select<option>
-            {% for i in em %}
-            <option value="{{i.employee_id}}">{{i.employee_id}} - {{i.employee_name}}</option>
-            {% endfor %}
-        </select>
-        <br> <br>
+            <label for="droptime">Waktu Dropoff:</label>
+            <input type="time" name="droptime" id="droptime">
+            <br> <br>
 
-        <label for="droptime">Dropoff Time</label>
-        <input type="time" name="droptime" id="droptime">
-        <br> <br>
-
-        <label for="picktime">Pickup Time</label>
-        <input type="time" name="picktime" id="picktime">
-        <br> <br>
+            <label for="picktime">Waktu Pickup:</label>
+            <input type="time" name="picktime" id="picktime">
+            <br> <br>
+            
+            <input type="hidden" name="kidatt" value="Tidak">
+            <input type="submit" id="empsubmit" value="Submit">
+        </div>
         
-        <input type="hidden" name="kidatt" value="no">
-        <input type="submit" id="empsubmit" value="Submit">
-    </fieldset>
-</form>
+    </form>
+</section>
 {% endblock content %}

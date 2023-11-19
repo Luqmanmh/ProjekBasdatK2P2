@@ -1,0 +1,171 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background-image: url(/static/images/background.png);
+    background-repeat: repeat;
+    margin: auto;
+    text-align: center;
+}
+
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    background: white;
+    margin: 0 0 3rem 0;
+    padding: .5rem 3rem 0rem 3rem;
+    font-size: 1em;
+}
+
+ul {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+}
+h1 {
+    margin: 1rem auto;
+}
+
+#tableall {
+    box-sizing: border-box;
+    height: 35rem;
+    width: 57rem;
+    border: 2rem solid white;
+    background-color: white;
+    border-radius: 1.25rem;
+    margin: 0 3rem 0 3rem;
+    padding: 0 0.5rem 0 0.5rem;
+    margin: auto;
+    align-items: flex-start;
+    text-align: center;
+}
+
+.logo {
+    color: rgba(0.76, 85.26, 146.45, 0.90);
+    font-size: 50px;
+    font-family: 'Pad Thai', sans-serif;
+    font-weight: 400;
+    word-wrap: break-word;
+    width: 100%;
+    height: 100%;
+}
+
+.moto {
+    margin-right: 2rem;
+    text-align: right;
+    color: rgba(0.76, 85.26, 146.45, 0.90);
+    font-size: 25px;
+    font-size: 1.5625rem;
+    font-style: normal;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    word-wrap: break-word;
+    width: 15rem;
+    height: 100%;
+}
+
+.linksl {
+    text-align: left;
+    margin-left: 1.5rem;
+}
+
+.retbtn {
+    font-family: 'Noto Sans', sans-serif;
+    border: .5rem solid rgb(202, 0, 0);
+    background-color: rgb(202, 0, 0);
+    border-radius: .8rem;
+    color: white;
+}
+
+.retbtn:hover {
+    border: .5rem solid white;
+    background-color: white;
+    border-radius: .8rem;
+    color: rgb(202, 0, 0);
+    box-shadow: 0px 3px 8px 2px rgba(0, 0, 0, 0.5);
+}
+
+
+.child {
+    margin: auto;
+    height: 26.468rem;
+    width: 25rem;
+    border: 2rem solid rgba(227, 237, 245, 1);
+    background-color: rgba(227, 237, 245, 1);
+    border-radius: 1.25rem 1.25rem 0 0;
+}
+
+.child h1 {
+    font-size: 2rem;
+    text-align: center;
+    align-items: center;
+}
+
+.child .fa-circle-user {
+    font-size: 5rem;
+}
+
+.parent {
+    margin: 0 auto;
+}
+
+.content {
+    display: flex;
+    margin: 0 auto;
+    text-align: center;
+    align-items: flex-start;
+}
+
+
+.horline {
+    background-color: black;
+    width: 15.813rem;
+    height: 0.125rem;
+    margin: auto;
+}
+
+.verline {
+    background-color: black;
+    height: 6.5rem;
+    width: 0.125rem;
+    margin: auto .5rem;
+}
+
+.indv {
+    display: flex;
+    margin: 2rem auto;
+    text-align: justify;
+}
+
+.indv i {
+ font-size: 6rem;
+ margin: 0 .5rem;
+}
+
+.data p {
+    margin: .2rem .5rem;
+    word-wrap: break-word;
+    font-weight: 640;
+    font-size: 1.3rem;
+}
+
+.addresscont {
+    display: flex;
+    margin: 1.5rem auto;
+    justify-content: center;
+}
+
+.addresscont i{
+margin: .3rem 1rem;
+}
+
+.addresscont p{
+    width: 10rem;
+    text-align: left;
+}

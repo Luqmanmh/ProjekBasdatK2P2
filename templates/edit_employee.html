@@ -1,42 +1,62 @@
 {% extends 'base.html' %}
-{% block title %}Edit Employee Data{% endblock title %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/style_add_em_pr.css' %}">
+{% endblock %}
+{% block title %}Edit Data Pegawai{% endblock title %}
 {% block content %}
-<a href="/employee/">Return</a>
-<h1>Edit Employee Data</h1>
-<form method="post" action="/push_edit_em/">
-    {% csrf_token %}
-    <fieldset style="width: 30rem;">
+<nav>
+    <ul>
+        <li class="logo">thitiphan</li>
+    </ul>
+    <ul>
+        <li class="moto">Karena semua hanyalah titipan</li>
+    </ul>
+</nav>
+<section id="main">
+    <div class="linksl">
+        <a class="retbtn" href="/employee/">Kembali</a>
+    </div>
+    <h1><i class="fa-solid fa-pen-to-square"></i> Edit Data Pegawai</h1>
+    <form method="post" action="/push_edit_em/">
+        {% csrf_token %}
+        <div>
         <input type="hidden" id="empid" name="empid" value="{{em.employee_id}}">
 
-        <label for="empname"> Name:</label>
+        <label for="empname">Nama:</label>
         <input type="text" id="empname" name="empname" value="{{em.employee_name}}">
         <br> <br>
         
-        <label for="empage"> Birthday:</label>
+        <label for="empage">Tanggal Lahir:</label>
         <input type="date" id="empage" name="empage" value="{{em.employee_birth|date:'Y-m-d'}}">
         <br> <br>
 
-        <label for="empgend"> Gender:</label>
-        <label><input type="radio" name="empgend" id="empgend" value="m" {% if em.employee_gender == "m" %} checked {% endif %}>Male</label>
-        <label><input type="radio" name="empgend" id="empgend" value="f" {% if em.employee_gender == "f" %} checked {% endif %}>Female</label>
-        <br> <br>
-
-        <label for="empaddr">Address:</label>
-        <br>
-        <textarea name="empaddr" id="empaddr" cols="30" rows="5">{{em.employee_address}}</textarea>
-        <br> <br>
-
-        <label for="empph">Phone Number:</label>
+        <label for="empph">Nomer Telepon:</label>
         <input type="tel" name="empph" id="empph" value="{{em.employee_phone}}" maxlength="12">
         <br> <br>
 
-        <label for="empdp"> Department:</label>
-        <label><input type="radio" name="empdp" id="empdp" value="Care Taker" {% if em.employee_department == "Care Taker" %} checked {% endif %}>Care Taker</label>
-        <label><input type="radio" name="empdp" id="empdp" value="Logistics" {% if em.employee_department == "Logistics" %} checked {% endif %}>Logistics</label>
+        <label for="empgend">Jenis Kelamin:</label>
+        <select id="empgend" name="empgend">
+            <option value="L" {% if em.employee_gender == "L" %} selected {% endif %}>Pria</option>
+            <option value="P" {% if em.employee_gender == "P" %} selected {% endif %}>Wanita</option>
+        </select>
+        <br> <br>
+        </div>
+        <div>
+        <label for="empdp">Divisi:</label>
+        <select id="empdp" name="empdp">
+            <option value="Pengasuh" {% if em.employee_department == "Pengasuh" %} selected {% endif %}>Pengasuh</option>
+            <option value="Logistik" {% if em.employee_department == "Logistik" %} selected {% endif %}>Logistik</option>
+        </select>
+        <br> <br>
+
+        <label for="empaddr">Alamat:</label>
+        <br> 
+        <textarea name="empaddr" id="empaddr" cols="30" rows="3">{{em.employee_address}}</textarea>
         <br> <br>
         
         <input type="submit" id="empsubmit" value="Submit">
-    </fieldset>
-
-</form>
+        </div>
+    </form>
+</section>
 {% endblock content %}

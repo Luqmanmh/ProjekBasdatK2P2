@@ -3,7 +3,7 @@
 {% block css %}
     <link rel="stylesheet" href="{% static 'css/stylelog.css' %}">
 {% endblock %}
-{% block title %}Logistics Panel{% endblock title %}
+{% block title %}Panel Logistik{% endblock title %}
 {% block content %}
 <nav>
     <ul>
@@ -18,17 +18,17 @@
     <div class="linksl">
         <a  class="retbtn" href="/inner/">Return</a>
     </div>
-    <h1>Logistics Panel</h1>
+    <h1><i class="fa-solid fa-folder"></i> Panel Logistik</h1>
     <br>
     <div class="logpanel">  
         <div class="logtable">
-            <h4>Item Table</h4>
+            <h4><i class="fa-solid fa-cart-flatbed fa-flip-horizontal"></i> Perlengkapan</h4>
             <table>
                 <tr>
-                    <th>Item id</th>
-                    <th>Item Name</th>
-                    <th class="simp">condition</th>
-                    <th>Responsible</th>
+                    <th>ID Perlengkapan</th>
+                    <th>Nama Perlengkapan</th>
+                    <th class="simp">Kondisi</th>
+                    <th>PJ</th>
                     <th>actions</th>
                 </tr>
                 {% for i in eq_dt %}
@@ -37,20 +37,20 @@
                     <td>{{i.eqs.equipment_name}}</td>
                     <td class="simp">{{i.eqs.equipment_con}}</td>
                     <td>{{i.employees.employee_name}}</td>
-                    <td><a class="retbtn1" href="/deleteeq/{{i.eqs.equipment_id}}">Erase</a> <br> <br> <a class="spbtn1" href = "/editeq/{{i.eqs.equipment_id}}">Edit</a></td>
+                    <td><a class="retbtn1" href="/deleteeq/{{i.eqs.equipment_id}}">Hapus</a> <br> <br> <a class="spbtn1" href = "/editeq/{{i.eqs.equipment_id}}">Edit</a></td>
                 </tr>
                 {% endfor %}
             </table>
-            <a class="spbtn" href="/add_item/">Add New Item</a>
+            <a class="spbtn" href="/add_item/">Tambah Perlengkapan Baru</a>
         </div>
         <div class="logtable">
-            <h4>Toy Table</h4>
+            <h4><i class="fa-solid fa-car-side fa-flip-horizontal"></i> Mainan</h4>
             <table>
                 <tr>
-                    <th>Toy id</th>
-                    <th>Toy Name</th>
-                    <th>condition</th>
-                    <th>Responsible</th>
+                    <th>ID Mainan</th>
+                    <th>Nama Mainan</th>
+                    <th class="simp">Kondisi</th>
+                    <th>PJ</th>
                     <th>actions</th>
                 </tr>
                 {% for i in toy_dt %}
@@ -59,20 +59,20 @@
                     <td>{{i.toys.toy_name}}</td>
                     <td class="simp">{{i.toys.toy_con}}</td>
                     <td>{{i.employees.employee_name}}</td>
-                    <td><a class="retbtn1" href="/deletetoy/{{i.toys.toy_id}}">Erase</a> <br> <br> <a class="spbtn1" href = "/edittoy/{{i.toys.toy_id}}">Edit</a></td>
+                    <td><a class="retbtn1" href="/deletetoy/{{i.toys.toy_id}}">Hapus</a> <br> <br> <a class="spbtn1" href = "/edittoy/{{i.toys.toy_id}}">Edit</a></td>
                 </tr>
                 {% endfor %}
             </table>
-            <a  class="spbtn" href="/add_toy/">Add New Toy</a>
+            <a  class="spbtn" href="/add_toy/">Tambah Mainan Baru</a>
         </div>
         <div class="logtable">
-            <h4>Supply Table</h4>
+            <h4><i class="fa-solid fa-boxes-stacked"></i> Persediaan</h4>
             <table>
                 <tr>
-                    <th>Supply id</th>
-                    <th>Supply Name</th>
-                    <th>Amount</th>
-                    <th>Responsible</th>
+                    <th>ID Persediaan</th>
+                    <th>Nama persediaan</th>
+                    <th class="simp">Jumlah</th>
+                    <th>PJ</th>
                     <th>actions</th>
                 </tr>
                 {% for i in sp_dt %}
@@ -81,11 +81,11 @@
                     <td>{{i.sps.supply_name}}</td>
                     <td class="simp">{{i.sps.supply_amt}}</td>
                     <td>{{i.employees.employee_name}}</td>
-                    <td class="spact"><a class="retbtn1" href="/deletesupp/{{i.sps.supply_id}}">Erase</a> <br> <br> <a class="spbtn1" href = "/editsupp/{{i.sps.supply_id}}">Edit</a></td>
+                    <td class="spact"><a class="retbtn1" href="/deletesupp/{{i.sps.supply_id}}">Hapus</a> <br> <br> <a class="spbtn1" href = "/editsupp/{{i.sps.supply_id}}">Edit</a></td>
                 </tr>
                 {% endfor %}
             </table>
-            <a  class="spbtn" href="/add_supply/">Add New Supply</a>
+            <a  class="spbtn" href="/add_supply/">Tambah Persediaan Baru</a>
         </div>
     </div>
 </section>

@@ -4,6 +4,7 @@ from . import views
 urlpatterns = [
     path('', views.index, name='index'),
     path('inner/', views.inner, name='inner'),
+    path('chdb/', views.regch, name='child DB'),
     path('children/', views.children, name="children"),
     path('employee/', views.employees, name='employee'),
     path("logistics/", views.logistics, name="logistics"),
@@ -21,7 +22,7 @@ urlpatterns = [
     path("edittoy/<str:toy_id>", views.edit_toy, name="edit_toy"),
     path("editsupp/<str:supp_id>", views.edit_supp, name="edit_supp"),
     path("attendance/<str:ch_id>", views.att_kid, name="attendance"),
-    path("parentone/<str:parent_id>/", views.parent_1, name="parent_1"),
+    path("parentone/<str:ch_id>/", views.parent_1, name="parent_1"),
     path("push_add_item/", views.push_add_item, name="push_add_item"),
     path("push_add_toy/", views.push_add_toy, name="push_add_toy"),
     path("push_add_supply/", views.push_add_supply, name="push_add_supply"),

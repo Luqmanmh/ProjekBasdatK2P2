@@ -1,29 +1,57 @@
 {% extends 'base.html' %}
-{% block title %}Edit Child Attendance{% endblock title %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/styleatt.css' %}">
+{% endblock %}
+{% block title %}Ubah Kehadiran Anak{% endblock title %}
 {% block content %}
-<a href="bastards.html">Return</a>
-<h1>Edit Child Attendance</h1>
-<form method="post" action="/push_att_kid/">
-    {% csrf_token %}
-    <fieldset style="width: 30rem;">
+<nav>
+    <ul>
+        <li class="logo">thitiphan</li>
+    </ul>
+    <ul>
+        <li class="moto">Karena semua hanyalah titipan</li>
+    </ul>
+</nav>
+<section id="main">
+    <div class="linksl">
+        <a class="retbtn" href="/children/">Kembali</a>
+    </div>
+    <h1><i class="fa-solid fa-pen-to-square"></i> Ubah Kehadiran Anak</h1>
+
+    <div class="iden">
+        <i class="fa-regular fa-circle-user"></i>
+        <h2>{{ch.child_name}} </h2>
+        <p>{{ch.child_id}}</p>
+    </div>
+    <div class="horline"></div>
+    <form method="post" action="/push_att_kid/">
+        {% csrf_token %}
         <input type="hidden" id="kidid" name="kidid" value="{{ch.child_id}}">
-        <p>Name: {{ch.child_name}} </p>
 
-        <label for="droptime">Dropoff Time</label>
-        <input type="time" name="droptime" id="droptime" value="{{ch.in_time|time:'H:i'}}">
-        <br> <br>
-
-        <label for="picktime">Pickup Time</label>
-        <input type="time" name="picktime" id="picktime" value="{{ch.out_time|time:'H:i'}}">
-        <br> <br>
-
-        <label for="kidatt"> Attendance:</label>
-        <label><input type="radio" name="kidatt" id="kidatt" value="yes" {% if ch.in_con == "yes" %} checked {% endif %}>Yes</label>
-        <label><input type="radio" name="kidatt" id="kidatt" value="no" {% if ch.in_con == "no" %} checked {% endif %}>No</label>
-        <br> <br>
-        
+        <div class="time">
+            <div class="timel">
+                <label for="droptime">Waktu Dropoff</label>
+                <p>:</p>
+                <input type="time" name="droptime" id="droptime" value="{{ch.in_time|time:'H:i'}}">
+            <br> <br>
+            </div>
+            <div class="timer">
+                <label for="picktime">Waktu Pickup</label>
+                <p>:</p>
+                <input type="time" name="picktime" id="picktime" value="{{ch.out_time|time:'H:i'}}">
+            <br> <br>
+            </div>
+        </div>
+        <br>
+        <label for="kidatt">Kehadiran:</label>
+        <select id="kidatt" name="kidatt">
+            <option value="Ya" {% if ch.in_con == "Ya" %} selected {% endif %}>Ya</option>
+            <option value="Tidak" {% if ch.in_con == "Tidak" %} selected {% endif %}>Tidak</option>
+        </select>
+        <br><br>
+    
         <input type="submit" id="empsubmit" value="Submit">
-    </fieldset>
-
-</form>
+    </form>
+</section>
 {% endblock content %}

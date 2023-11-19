@@ -3,29 +3,29 @@
 {% block css %}
     <link rel="stylesheet" href="{% static 'css/stylepr.css' %}">
 {% endblock %}
-{% block title %}Parents Panel{% endblock title %}
+{% block title %}Panel Orangtua{% endblock title %}
 {% block content %}
 <nav>
     <ul>
         <li class="logo">thitiphan</li>
     </ul>
     <ul>
-        <li class="moto"> Karena semua hanyalah titipan</li>
+        <li class="moto">Karena semua hanyalah titipan</li>
     </ul>
 </nav>
 <section id="tableall">
     <div class="linksl">
-        <a class="retbtn" href="/children/">Return</a>
+        <a class="retbtn" href="/chdb/">Kembali</a>
     </div>
-    <h1>Parent Panel</h1>
+    <h1>Orangtua</h1>
     <table>
         <tr>
-            <th>Parent id</th>
-            <th>Mother</th>
-            <th>Mother Number</th>
-            <th>Father</th>
-            <th>Father Number</th>
-            <th class="spad">Address</th>
+            <th>Id Orangtua</th>
+            <th>Ibu</th>
+            <th>Telepon Ibu</th>
+            <th>Ayah</th>
+            <th>Telepon Ayah</th>
+            <th class="spad">Alamat</th>
             <th class="spact">Actions</th>
         </tr>
         {% for i in pr_dt %}
@@ -36,12 +36,12 @@
             <td>{{i.f_name}}</td>
             <td>{{i.f_phone}}</td>
             <td class="spad">{{i.parent_address}}</td>
-            <td class="spact"><a class="retbtn" href="/deletepr/{{i.parent_id}}">Erase</a> <a class="spbtn" href="/editpr/{{i.parent_id}}">Edit</a></td>
+            <td class="spact"><a class="retbtn" href="/deletepr/{{i.parent_id}}">Hapus</a> <a class="spbtn" href="/editpr/{{i.parent_id}}">Edit</a></td>
         </tr>
         {% endfor %}
     </table>
     <div class="linksl">
-        <a class="spbtn" href="/add_parent/">Add New Parent</a>
+        <a class="spbtn" href="/add_parent/">Tambah Orangtua Baru</a>
     </div>
 </section>
 

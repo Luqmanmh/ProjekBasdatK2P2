@@ -1,0 +1,178 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background-image: url(/static/images/background.png);
+    margin: auto;
+    align-items: center;
+    text-align: center;
+}
+
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    background: white;
+    margin: 0;
+    padding: .5rem 3rem 0rem 3rem;
+}
+
+ul {
+    list-style-type: none;
+}
+
+h1 {
+    color: black;
+    font-size: 35px;
+    font-family: Montserrat;
+    font-weight: 700;
+    word-wrap: break-word;
+    width: 100%; 
+    height: 100%; 
+    text-align: center; 
+    color: black; 
+    font-size: 35px; 
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: 700; 
+    padding-top: 1.5rem;
+
+}
+
+
+form {
+    text-align: center;
+    margin: 0 4rem 4rem 4rem;
+    gap: 2rem;
+    font-family: 'Noto Sans', sans-serif;
+}
+
+input[type="submit"] {
+    width: 100%; 
+    height: 80%; 
+    background: #D9D9D9; 
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); 
+    border-radius: 10px;
+    stroke: none;
+    border: 2px #D9D9D9;
+    float: center;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+}
+
+
+input {
+    float: right;
+    width: 60%;
+    height: 80%;
+}
+
+select {
+
+    width: 40%;
+    height: 80%;
+}
+
+#main{
+    margin: auto;
+    margin-top: 3.5rem;
+    width: 33rem; 
+    height: 100%; 
+    background: white; 
+    border-radius: 20px;
+    align-items: center;
+    text-align: center;    
+    padding: 2rem 0;
+}
+
+.logo {
+    color: rgba(0.76, 85.26, 146.45, 0.90);
+    font-size: 50px;
+    font-family: 'Pad Thai', sans-serif;
+    font-weight: 400;
+    word-wrap: break-word;
+    width: 100%;
+    height: 100%;
+}
+
+.moto {
+    margin-right: 2rem;
+    text-align: right;
+    color: rgba(0.76, 85.26, 146.45, 0.90);
+    font-size: 25px;
+    font-size: 1.5625rem;
+    font-style: normal;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    word-wrap: break-word;
+    width: 15rem;
+    height: 100%;
+}
+
+.retbtn {
+    font-family: 'Noto Sans', sans-serif;
+    border: .5rem solid rgb(202, 0, 0);
+    background-color: rgb(202, 0, 0);
+    border-radius: .8rem;
+    color: white;
+    text-decoration:none;
+
+}
+
+.retbtn:hover {
+    border: .5rem solid white;
+    background-color: white;
+    border-radius: .8rem;
+    color: rgb(202, 0, 0);
+    box-shadow: 0px 3px 8px 2px rgba(0,0,0,0.5);
+}
+
+.linksl {
+    text-align: left;
+    margin-left: 1.5rem;
+}
+
+.time {
+    display: flex;
+    align-items: center;
+}
+
+.time p {
+    margin: auto .7rem auto -1rem;
+}
+
+
+.timel {
+    text-align: left;
+    display: flex;
+    align-items: center;
+    margin: 0 2rem 0 0 ;
+}
+
+.timer {
+    text-align: left;
+    display: flex;
+    align-items: center;
+    margin: 0 0 0 2rem  ;
+}
+
+.iden {
+    text-align: center;
+    margin: 1rem auto;
+}
+
+.iden i{
+    font-size: 5rem;
+}
+
+.iden p{
+    margin: -.8rem auto;
+}
+
+.horline {
+    background-color: black;
+    width: 10.813rem;
+    height: 0.125rem;
+    margin: .5rem auto .8rem auto;
+}

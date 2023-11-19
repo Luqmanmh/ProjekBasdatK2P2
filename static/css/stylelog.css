@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: 'Montserrat', sans-serif;
 }
 
 body {
@@ -29,16 +30,17 @@ table {
     border-collapse: separate;
     margin-left: auto;
     margin-right: auto;
-    width: 10rem;
 }
 
 tr {
     outline: none;
     border: .5rem solid rgba(217, 217, 217, 1);
     background-color: rgba(217, 217, 217, 1);
+
 }   
 th{
     padding: .7rem;
+    height: 3rem;
 }
 
 td {
@@ -76,7 +78,8 @@ a {
     align-items: flex-start;
 }
 .logtable {
-    font-size: .7rem;
+    font-size: .63rem;
+    width: 26rem;
     box-sizing: border-box;
     border: 2rem solid rgba(227, 237, 245, 1);
     background-color: rgba(227, 237, 245, 1);
@@ -98,13 +101,13 @@ a {
 }
 
 .moto {
-    margin-right: 2rem;
+    margin-right: .95rem;
     text-align: right;
     color: rgba(0.76, 85.26, 146.45, 0.90);
     font-size: 25px;
     font-size: 1.5625rem;
     font-style: normal;
-    font-family: 'Noto Sans', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     word-wrap: break-word;
     width: 15rem;

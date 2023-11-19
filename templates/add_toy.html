@@ -1,27 +1,43 @@
 {% extends 'base.html' %}
-{% block title %}Add Toy{% endblock title %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/style_add_eq.css' %}">
+{% endblock %}
+{% block title %}Tambah Mainan{% endblock title %}
 {% block content %}
-<a href="/logistics/">Return</a>
-<h1>Add Toy</h1>
-<form method="post" action="/push_add_toy/">
-    {% csrf_token %}
-    <fieldset style="width: 30rem;">
-        <label for="toyid"> ID:</label>
+<nav>
+    <ul>
+        <li class="logo">thitiphan</li>
+    </ul>
+    <ul>
+        <li class="moto">Karena semua hanyalah titipan</li>
+    </ul>
+</nav>
+<section id="main">
+    <div class="linksl">
+        <a class="retbtn" href="/logistics/">Kembali</a>
+    </div>
+    <h1><i class="fa-solid fa-circle-plus"></i> Tambah Mainan</h1>
+    <form method="post" action="/push_add_toy/">
+        {% csrf_token %}
+        <label for="toyid">ID:</label>
         <input type="text" id="toyid" name="toyid">
         <br> <br>
-        <label for="toyname"> Name:</label>
+
+        <label for="toyname">Nama:</label>
         <input type="text" id="toyname" name="toyname">
         <br> <br>
-        <label for="toyresp"> Responsible:</label>
+        
+        <label for="toyresp">PJ:</label>
         <select name="toyresp" id="toyresp">
-            <option selected disabled hidden>Select<option>
+            <option selected disabled hidden>Pilih<option>
             {% for i in em %}
             <option value="{{i.employee_id}}">{{i.employee_id}} - {{i.employee_name}}</option>
             {% endfor %}
         </select>
         <br><br>
-        <input type="hidden" name="toycon" value="good">
+        <input type="hidden" name="toycon" value="Baik">
         <input type="submit" id="toysubmit" value="Submit">
-    </fieldset>
-</form>
+    </form>
+</section>
 {% endblock content %}

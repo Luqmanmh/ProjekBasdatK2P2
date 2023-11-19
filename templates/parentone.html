@@ -1,29 +1,56 @@
 {% extends 'base.html' %}
-{% block title %}Parent Detail{% endblock title %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/stylepr1.css' %}">
+{% endblock %}
+{% block title %}Detail Orangtua{% endblock title %}
 {% block content %}
-<div class="retbtn"><a href="/children/">Return</a></div>
-<h1>Parent Detail</h1>
-<section id="prtable">
-    <h1>P23001</h1>
-    <table border="1">
-        <tr>
-            <th>Parent id</th>
-            <th>mother</th>
-            <th>Mother Number</th>
-            <th>Father</th>
-            <th>Father Number</th>
-            <th>Address</th>
-            <th>Actions</th>
-        </tr>
-        <tr>
-            <td>{{pr_1.parent_id}}</td>
-            <td>{{pr_1.m_name}}</td>
-            <td>{{pr_1.m_phone}}</td>
-            <td>{{pr_1.f_name}}</td>
-            <td>{{pr_1.f_phone}}</td>
-            <td>{{pr_1.parent_address}}</td>
-            <td>Erase | Edit</td>
-        </tr>
-    </table>
+<nav>
+    <ul>
+        <li class="logo">thitiphan</li>
+    </ul>
+    <ul>
+        <li class="moto">Karena semua hanyalah titipan</li>
+    </ul>
+</nav>
+<section id="tableall">
+    <div class="linksl">
+        <a class="retbtn" href="/children/">Kembali</a>
+    </div>
+    <h1><i class="fa-solid fa-circle-info"></i> Detail Orangtua</h1>
+    <div class="content">
+        <div class="child">
+            <i class="fa-regular fa-circle-user"></i>
+            <h1>{{ch.child_name}}</h1>
+            <p>{{ch.child_id}}</p>
+            <div class="horline"></div>
+            <div class="addresscont">
+                <i class="fa-solid fa-house-user"></i>
+                <br>
+                <p class="address"> {{pr.parent_address}}</p>
+            </div>
+        </div>
+        <div class="parent">
+            <h2>Parent: {{pr.parent_id}}</p>
+            <div class="indv">
+                <i class="fa-regular fa-circle-user"></i>
+                <div class="verline"></div>
+                <div class="data">
+                    <p>Ibu</p>
+                    <p>{{pr.m_name}}</p>
+                    <p>{{pr.m_phone}}</p>
+                </div>
+            </div>
+            <div class="indv">
+                <i class="fa-regular fa-circle-user"></i>
+                <div class="verline"></div>
+                <div class="data">
+                    <p>Ayah</p>
+                    <p>{{pr.f_name}}</p>
+                    <p>{{pr.f_phone}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 {% endblock content %}

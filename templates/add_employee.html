@@ -1,44 +1,65 @@
 {% extends 'base.html' %}
-{% block title %}Add Employee{% endblock title %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/style_add_em_pr.css' %}">
+{% endblock %}
+{% block title %}Tambah Data Pegawai{% endblock title %}
 {% block content %}
-<a href="/employee/">Return</a>
-<h1>Add Employee</h1>
-<form method="post" action="/push_add_employee/">
-    {% csrf_token %}
-    <fieldset style="width: 30rem;">
-        <label for="empid"> ID:</label>
-        <input type="text" id="empid" name="empid">
-        <br> <br>
+<nav>
+    <ul>
+        <li class="logo">thitiphan</li>
+    </ul>
+    <ul>
+        <li class="moto">Karena semua hanyalah titipan</li>
+    </ul>
+</nav>
+<section id="main">
+    <div class="linksl">
+        <a class="retbtn" href="/employee/">Kembali</a>
+    </div>
+    <h1><i class="fa-solid fa-circle-plus"></i> Tambah Data Pegawai</h1>
+    <br>
+    <form method="post" action="/push_add_employee/">
+        {% csrf_token %}
+        <div>
+            <label for="empid">ID:</label>
+            <input type="text" id="empid" name="empid">
+            <br> <br>
 
-        <label for="empname"> Name:</label>
-        <input type="text" id="empname" name="empname">
-        <br> <br>
-        
-        <label for="empage"> Birthday:</label>
-        <input type="date" id="empage" name="empage">
-        <br> <br>
+            <label for="empname">Nama:</label>
+            <input type="text" id="empname" name="empname">
+            <br> <br>
+            
+            <label for="empage">Tanggal Lahir:</label>
+            <input type="date" id="empage" name="empage">
+            <br> <br>
 
-        <label for="empgend"> Gender:</label>
-        <label><input type="radio" name="empgend" id="empgend" value="m">Male</label>
-        <label><input type="radio" name="empgend" id="empgend" value="f">Female</label>
-        <br> <br>
+            <label for="empph">Nomer Telepon:</label>
+            <input type="tel" name="empph" id="empph" placeholder="081234567891" maxlength="12">
+            <br> <br>
 
-        <label for="empaddr">Address:</label>
-        <br>
-        <textarea name="empaddr" id="empaddr" cols="30" rows="5"></textarea>
-        <br> <br>
+            <label for="empgend">Jenis Kelamin:</label>
+            <select id="empgend" name="empgend">
+                <option value="L">Pria</option>
+                <option value="P">Wanita</option>
+            </select>
+            <br> <br>
+        </div>
+        <div>
+            <label for="empdp">Divisi:</label>
+            <select id="empdp" name="empdp">
+                <option value="Pengasuh">Pengasuh</option>
+                <option value="Logistik">Logistik</option>
+            </select>
+            <br> <br>
 
-        <label for="empph">Phone Number:</label>
-        <input type="tel" name="empph" id="empph" placeholder="081234567891" maxlength="12">
-        <br> <br>
-
-        <label for="empdp"> Department:</label>
-        <label><input type="radio" name="empdp" id="empdp" value="Care Taker">Care Taker</label>
-        <label><input type="radio" name="empdp" id="empdp" value="Logistics">Logistics</label>
-        <br> <br>
-        
-        <input type="submit" id="empsubmit" value="Submit">
-    </fieldset>
-
-</form>
+            <label for="empaddr">Alamat:</label>
+            <br>
+            <textarea name="empaddr" id="empaddr" cols="30" rows="3"></textarea>
+            <br> <br>
+            
+            <input type="submit" id="empsubmit" value="Submit">
+        </div>
+    </form>
+</section>
 {% endblock content %}

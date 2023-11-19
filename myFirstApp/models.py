@@ -1,21 +1,21 @@
 from django.db import models
 
 class employee(models.Model):
-    DP_DT = [("Care Taker", "Care Taker"), ("Logistics", "Logistics")]
-    gender = [("m", "Male"), ("f", "Female")]
+    DP_DT = [("Pengasuh", "Pengasuh"), ("Logistik", "Logistik")]
+    gender = [("P", "P"), ("L", "L")]
     employee_id = models.CharField(max_length=7, primary_key=True)
     employee_name = models.CharField(max_length=200)
     employee_birth = models.DateField()
-    employee_gender = models.CharField(max_length=2, choices=gender,default="m")
+    employee_gender = models.CharField(max_length=2, choices=gender)
     employee_address = models.TextField()
     employee_phone = models.CharField(max_length=14)
     employee_department = models.CharField(max_length=12, choices=DP_DT)
 
 class toy(models.Model):
-    con = [("bad", "Bad"), ("good", "Good")]
+    con = [("Buruk", "Buruk"), ("Baik", "Baik")]
     toy_id = models.CharField(max_length=7, primary_key=True)
     toy_name = models.CharField(max_length=100)
-    toy_con = models.CharField(max_length=5, choices=con, default="g")
+    toy_con = models.CharField(max_length=5, choices=con)
     resp = models.ForeignKey(employee, null=True, on_delete=models.SET_NULL)
 
     class Meta:
@@ -23,10 +23,10 @@ class toy(models.Model):
 
 
 class equipment(models.Model):
-    con = [("bad", "Bad"), ("good", "Good")]
+    con = [("Buruk", "Buruk"), ("Baik", "Baik")]
     equipment_id = models.CharField(max_length=7, primary_key=True)
     equipment_name = models.CharField(max_length=100)
-    equipment_con = models.CharField(max_length=5, choices=con, default="g")
+    equipment_con = models.CharField(max_length=5, choices=con)
     resp = models.ForeignKey(employee, null=True, on_delete=models.SET_NULL)
 
     class Meta:
@@ -52,8 +52,8 @@ class parent(models.Model):
     parent_address = models.TextField()
 
 class child(models.Model):
-    gender = [("m", "Male"), ("f", "Female")]
-    con = [("yes", "yes"), ("no", "no")]
+    gender = [("P", "P"), ("L", "L")]
+    con = [("Ya", "Ya"), ("Tidak", "Tidak")]
     child_id = models.CharField(max_length=7, primary_key=True)
     child_name = models.CharField(max_length=200)
     child_gender = models.CharField(max_length=2, choices=gender)
@@ -61,7 +61,7 @@ class child(models.Model):
     disease = models.TextField(null=True)
     in_time = models.TimeField()
     out_time = models.TimeField()
-    in_con = models.CharField(max_length=4, choices=con, default="yes")
+    in_con = models.CharField(max_length=6, choices=con)
     parent = models.ForeignKey(parent, on_delete=models.CASCADE)
     care_taker = models.ForeignKey(employee, null=True, on_delete=models.SET_NULL)
 
