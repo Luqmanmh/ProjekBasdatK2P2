@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import date
 
 class employee(models.Model):
     DP_DT = [("Pengasuh", "Pengasuh"), ("Logistik", "Logistik")]
@@ -67,4 +68,12 @@ class child(models.Model):
 
     class Meta:
         managed = True
+
+    @property
+    def age(self):
+      if self.child_birth:
+        today = date.today()
+        age = today.year - self.child_birth.year - ((today.month, today.day) < (self.child_birth.month, self.child_birth.day))
+        return age
+      return None
 

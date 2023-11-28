@@ -7,6 +7,7 @@ def index(request):
 
 def inner(request):
     return render(request, 'inner.html')
+
 def regch(request):
     return render(request, 'regch.html')
 
@@ -439,27 +440,6 @@ def push_att_kid(request):
     ch.save()
 
     return redirect('/children')
-
-def search(request):
-    src = request.POST['srcchild']
-    ksrc = child.objects.filter(child_name__icontains = src)
-    
-    search = []
-
-    for i in ksrc:
-        employees = employee.objects.get(employee_id=i.care_taker_id)
-        childs = child.objects.get(child_id=i.child_id)
-        childarr = {
-            'employees': employees,
-            'childs': childs,
-        }
-        search.append(childarr)
-
-        context = {
-            'src': search
-        }
-    return redirect('/children', context)
-
     
     
 
