@@ -21,7 +21,7 @@ Webapp yang debuat untuk memudahkan pegawai Daycare untuk mengelola daycarenya. 
 Berikut adalah hal-hal yang diperlukan beserta langkah-langkah agar dapat menjalankan website ini secara lokal.
 ### Prerequisite
 - Python (minimal versi 3.8)  
-  Download python <a href="https://www.python.org/downloads/">disini</a>  
+  Download python <a href="https://www.python.org/downloads/">di sini</a>  
   Cek di terminal apakah sudah terinstall dengan benar, ketik:
   ```sh
   python --version
