@@ -15,7 +15,7 @@
 </details>
 
 ## Tentang Projek
-Webapp yang debuat untuk memudahkan pegawai Daycare untuk mengelola daycarenya. data yang dapat diinput berisi data pegawai, data logistik (perlengkapan, mainan dan persediaan), data orangtua, dan data anak. Teknologi yang digunakan dalam membuat website ini adalah Django dan DB Browser for SQLite.
+Webapp yang debuat untuk memudahkan pegawai Daycare untuk mengelola daycarenya. data yang dapat dikelola (CRUD) berisi data pegawai, data logistik (perlengkapan, mainan dan persediaan), data orangtua, dan data anak. Teknologi yang digunakan dalam membuat website ini adalah Django dan DB Browser for SQLite.
 
 ## Menjalankan Website
 Berikut adalah hal-hal yang diperlukan beserta langkah-langkah agar dapat menjalankan website ini secara lokal.
