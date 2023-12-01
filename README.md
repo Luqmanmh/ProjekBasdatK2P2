@@ -1,6 +1,6 @@
 <a name="readme-top"></a>
 <h1 align="center">Thitipan</h1>
-<h4 align="center">Karena semua hanyalah titipan</h4>
+<h2 align="center">Karena semua hanyalah titipan</h2>
 <p align="center">Webapp pengelolaan daycare bagi pegawai<p>
 <p align="center">Basis Data 2023 - P2 Kelompok 2</p>
 
