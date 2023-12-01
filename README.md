@@ -7,10 +7,10 @@
 <details>
   <summary>Anggota Kelompok</summary>
   <ul>
-    <li>Luqman Mohammad Hakim       G6401221012</li>
-    <li>Khansa Fitri Zhafirah       G6401221017</li>
-    <li>Chairul Rifky Tirtacahyadi	G6401221067</li>
-    <li>Yuuka Salsabila Sisvi       G6401221117</li>
+    <li>G6401221012 Luqman Mohammad Hakim</li>
+    <li>G6401221017 Khansa Fitri Zhafirah</li>
+    <li>G6401221067 Chairul Rifky Tirtacahyadi</li>
+    <li>G6401221117 Yuuka Salsabila Sisvi</li>
   </ul>
 </details>
 
