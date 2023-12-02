@@ -58,22 +58,25 @@ a {
 /* input search */
 .src {
     margin: auto;
-    border: .5rem solid rgba(217, 217, 217, 1);
+    border: 1px solid #000;
     width: 20rem;
-    background: rgba(217, 217, 217, 1);
+    background: white;
     border-radius: 15px;
 }
 input[type='text'] {
     width: 17rem;
     border: none;
     background: none;
+    outline: none;
 }
 
 .tpsm {
     background-color: transparent;
     border: none; 
     cursor: pointer;
+    
 }
+/*  */
 
 #tableall {
     box-sizing: border-box;

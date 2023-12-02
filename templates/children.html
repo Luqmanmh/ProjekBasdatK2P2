@@ -48,6 +48,11 @@
             </tr>
             {% endfor %}
         </table>
+        <form method="post" action="/res_att/" class="linksl">
+            {% csrf_token %}
+            <input type="hidden" id="kidatt" name="kidatt" value="Tidak">
+            <input type="submit" id="resatt" class="retbtn" value="Kosongkan">
+        </form>
     </div>
     <br>
     <div class="alltable">

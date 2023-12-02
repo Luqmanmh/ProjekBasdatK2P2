@@ -443,6 +443,17 @@ def push_att_kid(request):
 
     return redirect('/children')
     
+
+def res_att(request):
+    new_incon = request.POST['kidatt']
+
+    children = child.objects.all()
+    for ch in children:
+        ch.in_con = new_incon
+        ch.save()
+
+    return redirect('/children')
+    
     
 
 

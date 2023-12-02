@@ -42,4 +42,5 @@ urlpatterns = [
     path("push_edit_toy/", views.push_edit_toy, name="push_edit_toy"),
     path("push_edit_supp/", views.push_edit_supp, name="push_edit_supp"),
     path("push_att_kid/", views.push_att_kid, name="push_att_kid"),
+    path("res_att/", views.res_att, name="res_att"),
 ]
