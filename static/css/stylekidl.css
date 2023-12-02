@@ -55,6 +55,26 @@ a {
     text-decoration:none ;
 }
 
+/* input search */
+.src {
+    margin: auto;
+    border: .5rem solid rgba(217, 217, 217, 1);
+    width: 20rem;
+    background: rgba(217, 217, 217, 1);
+    border-radius: 15px;
+}
+input[type='text'] {
+    width: 17rem;
+    border: none;
+    background: none;
+}
+
+.tpsm {
+    background-color: transparent;
+    border: none; 
+    cursor: pointer;
+}
+
 #tableall {
     box-sizing: border-box;
     width: 80rem;
@@ -111,6 +131,15 @@ a {
 .linksl {
     text-align: left;
     margin-left: 2.5rem;
+}
+
+.nores {
+    margin-top: -1rem;
+    width: 70rem;
+}
+
+.nores td {
+    border-radius: 15px;
 }
 
 .retbtn {

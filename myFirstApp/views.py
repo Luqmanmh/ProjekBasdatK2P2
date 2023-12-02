@@ -13,10 +13,17 @@ def regch(request):
 
 def children(request):
     ch_in = child.objects.filter(in_con = "Ya").order_by("child_id")
-    ch_all = child.objects.all().order_by("child_id")
+    query = request.GET.get('q', '')
+    results = []
+
+    if query:
+        results = child.objects.filter(child_name__icontains=query)
+    else :
+        results = child.objects.all().order_by("child_id")
+
     table1 = []
 
-    for i in ch_all:
+    for i in results:
         employees = employee.objects.get(employee_id=i.care_taker_id)
         childs = child.objects.get(child_id=i.child_id)
         childarr1 = {
@@ -35,12 +42,7 @@ def children(request):
             'childs': childs,
         }
         table2.append(childsarr2)
-
-    context = {
-        'table1': table1,
-        'table2': table2,
-    }
-    return render(request, 'children.html', context)
+    return render(request, 'children.html', {'query': query, 'results': results, 'table2': table2, 'table1': table1})
 
 def employees(request):
     em_dt = employee.objects.all().order_by("employee_id")
@@ -442,4 +444,5 @@ def push_att_kid(request):
     return redirect('/children')
     
     
+
 
