@@ -13,7 +13,7 @@
 </details>
 
 ## Tentang Projek
-Webapp yang debuat untuk memudahkan pegawai Daycare untuk mengelola daycarenya. data yang dapat diinput berisi data pegawai, data logistik (perlengkapan, mainan dan persediaan), data orangtua, dan data anak. Teknologi yang digunakan dalam membuat website ini adalah Django dan DB Browser for SQLite.
+Thitiphan merupakan suatu database yang mengembangkan kualitas tempat penitipan anak dari sisi teknologi digital. Dalam database Thitiphan, terdapat informasi-informasi terkait identitas anak, riwayat penyakit dan alergi, jam kedatangan dan kepulangan, informasi terkait orang tua anak, informasi terkait semua karyawan terutama penanggung jawab setiap anak, serta informasi lainnya yang tidak kalah penting.. Teknologi yang digunakan dalam membuat website ini adalah Django dan DB Browser for SQLite.
 
 ## Menjalankan Website
 Berikut adalah hal-hal yang diperlukan beserta langkah-langkah agar dapat menjalankan website ini secara lokal.
