@@ -1,14 +1,16 @@
 <a name="readme-top"></a>
-<h1 align="center">Reservasi Rumah Sakit Medikakuy</h1>
-<p align="center">Basis Data 2023 - P1 Kelompok 11</p>
+<h1  align="center">THITIPAN</h1>
+<h3 align="center">Karena semua Hanyalah titipan</h3>h3
+<p align="center">Daycare Data Management System</p>
+<p align="center">Basis Data 2023 - P2 Kelompok 2</p>
 
 <details>
   <summary>Anggota Kelompok</summary>
   <ul>
-    <li>Luqman Mohammad Hakim       G6401221012</li>
-    <li>Khansa Fitri Zhafirah       G6401221017</li>
-    <li>Chairul Rifky Tirtacahyadi	G6401221067</li>
-    <li>Yuuka Salsabila Sisvi       G6401221117</li>
+    <li>G6401221012 Luqman Mohammad Hakim</li>
+    <li>G6401221017 Khansa Fitri Zhafirah</li>
+    <li>G6401221067 Chairul Rifky Tirtacahyadi</li>
+    <li>G6401221117 Yuuka Salsabila Sisvi</li>
   </ul>
 </details>
 
@@ -19,7 +21,7 @@ Thitiphan merupakan suatu database yang mengembangkan kualitas tempat penitipan 
 Berikut adalah hal-hal yang diperlukan beserta langkah-langkah agar dapat menjalankan website ini secara lokal.
 ### Prerequisite
 - Python (minimal versi 3.8)  
-  Download python <a href="https://www.python.org/downloads/">disini</a>  
+  Download python <a href="https://www.python.org/downloads/">di sini</a>  
   Cek di terminal apakah sudah terinstall dengan benar, ketik:
   ```sh
   python --version
