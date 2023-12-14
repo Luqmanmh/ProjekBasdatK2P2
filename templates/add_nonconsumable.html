@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/style_add_eq.css' %}">
+{% endblock %}
+{% block title %}Tambah Perlengkapan{% endblock title %}
+{% block content %}
+<nav>
+    <ul>
+        <li class="logo">thitiphan</li>
+    </ul>
+    <ul>
+        <li class="moto">Karena semua hanyalah titipan</li>
+    </ul>
+</nav>
+<section id="main">
+    <div class="linksl">
+        <a class="retbtn" href="/logistics/">Kembali</a>
+    </div>
+    <h1><i class="fa-solid fa-circle-plus"></i> Tambah Perlengkapan</h1>
+    <form method="post" action="/push_add_nocon/">
+        {% csrf_token %}
+        <label for="noconid">ID:</label>
+        <input type="text" id="noconid" name="noconid">
+        <br> <br>
+
+        <label for="noconname">Nama:</label>
+        <input type="text" id="noconname" name="noconname">
+        <br> <br>
+
+        <label for="noconkind">Jenis:</label>
+        <select name="noconkind" id="noconkind">
+            <option selected disabled hidden>Pilih<option>
+            <option value="Furn">Furniture</option>
+            <option value="Toy">Toy</option>
+        </select>
+        <br><br>
+
+        <label for="noconresp">PJ:</label>
+        <select name="noconresp" id="noconresp">
+            <option selected disabled hidden>Pilih<option>
+            {% for i in em %}
+            <option value="{{i.employee_id}}">{{i.employee_id}} - {{i.employee_name}}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+        <input type="hidden" name="noconcon" value="Baik">
+    <input type="submit" value="Submit">
+    </form>
+</section>
+{% endblock content %}

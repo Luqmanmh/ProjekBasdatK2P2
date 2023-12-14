@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import employee, child, parent, toy, equipment, supply
+from .models import employee, child, parent, consumable, nonconsumable
 
 #view
 def index(request):
@@ -13,6 +13,7 @@ def regch(request):
 
 def children(request):
     ch_in = child.objects.filter(in_con = "Ya").order_by("child_id")
+    emp= employee.objects.all()
     query = request.GET.get('q', '')
     results = []
 
@@ -24,8 +25,9 @@ def children(request):
     table1 = []
 
     for i in results:
-        employees = employee.objects.get(employee_id=i.care_taker_id)
         childs = child.objects.get(child_id=i.child_id)
+        employees = employee.objects.get(employee_id=i.care_taker_id)      
+        
         childarr1 = {
             'employees': employees,
             'childs': childs,
@@ -42,7 +44,13 @@ def children(request):
             'childs': childs,
         }
         table2.append(childsarr2)
-    return render(request, 'children.html', {'query': query, 'results': results, 'table2': table2, 'table1': table1})
+    context ={
+        'query': query,
+        'results': results,
+        'table2': table2,
+        'table1': table1
+    }
+    return render(request, 'children.html', context)
 
 def employees(request):
     em_dt = employee.objects.all().order_by("employee_id")
@@ -52,44 +60,69 @@ def employees(request):
     return render(request, 'employee.html', context)
 
 def logistics(request):
-    toy_dt = toy.objects.all().order_by("toy_id")
-    eq_dt = equipment.objects.all().order_by("equipment_id")
-    sp_dt = supply.objects.all().order_by("supply_id")
+    fd_dt = consumable.objects.filter(con_kind = "Food")
+    med_dt = consumable.objects.filter(con_kind = "Med")
+    utl_dt = consumable.objects.filter(con_kind = "Util")
 
+    tablef = []
+    for i in fd_dt:
+        employees = employee.objects.get(employee_id=i.resp_id)
+        food = consumable.objects.get(con_id=i.con_id)
+        foodarr = {
+            'emps':employees,
+            'foods': food,
+        }
+        tablef.append(foodarr)
+
+    tablem = []
+    for i in med_dt:
+        employees = employee.objects.get(employee_id=i.resp_id)
+        meds = consumable.objects.get(con_id=i.con_id)
+        eqarr = {
+            'emps':employees,
+            'meds':meds,
+        }
+        tablem.append(eqarr)
+
+    tableu = []
+    for i in utl_dt:
+        employees = employee.objects.get(employee_id=i.resp_id)
+        utls = consumable.objects.get(con_id=i.con_id)
+        sparr = {
+            'emps': employees,
+            'utils': utls,
+        }
+        tableu.append(sparr)
+
+    frn_dt = nonconsumable.objects.filter(nocon_kind = "Furn")
+    toy_dt = nonconsumable.objects.filter(nocon_kind = "Toy")
+
+    tabler = []
+    for i in frn_dt:
+        employees = employee.objects.get(employee_id=i.resp_id)
+        frns = nonconsumable.objects.get(nocon_id=i.nocon_id)
+        frnarr = {
+            'emps': employees,
+            'furns': frns,
+        }
+        tabler.append(frnarr)
+    
     tablet = []
     for i in toy_dt:
         employees = employee.objects.get(employee_id=i.resp_id)
-        toys = toy.objects.get(toy_id=i.toy_id)
+        toys = nonconsumable.objects.get(nocon_id=i.nocon_id)
         toyarr = {
-            'employees':employees,
+            'emps': employees,
             'toys': toys,
         }
         tablet.append(toyarr)
 
-    tablee = []
-    for i in eq_dt:
-        employees = employee.objects.get(employee_id=i.resp_id)
-        eqs = equipment.objects.get(equipment_id=i.equipment_id)
-        eqarr = {
-            'employees':employees,
-            'eqs':eqs,
-        }
-        tablee.append(eqarr)
-
-    tables = []
-    for i in sp_dt:
-        employees = employee.objects.get(employee_id=i.resp_id)
-        sps = supply.objects.get(supply_id=i.supply_id)
-        sparr = {
-            'employees': employees,
-            'sps': sps,
-        }
-        tables.append(sparr)
-
     context = {
-        "toy_dt": tablet,
-        "eq_dt": tablee,
-        "sp_dt": tables,
+        "med" : tablem,
+        "util" : tableu,
+        "food" : tablef,
+        "furn" : tabler,
+        "toy" : tablet,
     }
     return render(request, 'logistics.html', context)
 
@@ -99,42 +132,6 @@ def parents(request):
         "pr_dt": pr_dt,
     }
     return render(request, 'parent.html', context)
-
-def add_child(request):
-    em = employee.objects.filter(employee_department = "Pengasuh")
-    pr = parent.objects.all()
-    context = {
-        "pr":pr,
-        "em": em
-    }
-    return render(request, 'add_kid.html', context)
-
-def add_parent(request):
-    return render(request, 'add_parent.html')
-
-def add_employee(request):
-    return render(request, 'add_employee.html')
-
-def add_item(request):
-    em = employee.objects.filter(employee_department = "Logistik")
-    context = {
-        "em":em
-    }
-    return render(request, 'add_item.html', context)
-
-def add_supply(request):
-    em = employee.objects.filter(employee_department = "Logistik")
-    context = {
-        "em":em
-    }
-    return render(request, 'add_supply.html', context)
-
-def add_toy(request):
-    em = employee.objects.filter(employee_department = "Logistik")
-    context = {
-        "em":em
-    }
-    return render(request, 'add_toy.html', context)
 
 def parent_1(request, ch_id):
     ch = child.objects.get(child_id = ch_id)
@@ -147,39 +144,44 @@ def parent_1(request, ch_id):
 
 
 #add
-def push_add_item(request):
-    eqid = request.POST['itemid']
-    eqname = request.POST['itemname']
-    eqcon = request.POST['itemcon']
-    eqresp = request.POST['itemresp']
+def add_con(request):
+    em = employee.objects.filter(employee_department = "Logistik")
+    context = {
+        "em":em
+    }
+    return render(request, 'add_consumable.html', context)
+def push_add_con(request):
+    conid = request.POST['conid']
+    conname = request.POST['conname']
+    conamt = request.POST['conamt']
+    conkind = request.POST['conkind']
+    conresp = request.POST['conresp']
 
-    eq = equipment(equipment_id = eqid, equipment_name = eqname, resp_id = eqresp, equipment_con = eqcon)
-    eq.save()
-
-    return redirect('/logistics')
-
-def push_add_toy(request):
-    toyid = request.POST['toyid']
-    toyname = request.POST['toyname']
-    toyresp = request.POST['toyresp']
-    toycon = request.POST['toycon']
-    
-    itoy = toy(toy_id = toyid, toy_name = toyname, toy_con = toycon, resp_id = toyresp)
-    itoy.save()
+    con = consumable(con_id = conid, con_name = conname, con_amt = conamt, con_kind = conkind, resp_id = conresp )
+    con.save()
 
     return redirect('/logistics')
 
-def push_add_supply(request):
-    suppid = request.POST['suppid']
-    suppname = request.POST['suppname']
-    suppamt = request.POST['suppamt']
-    suppresp = request.POST['suppresp']
+def add_nocon(request):
+    em = employee.objects.filter(employee_department = "Logistik")
+    context = {
+        "em":em
+    }
+    return render(request, 'add_nonconsumable.html', context)
+def push_add_nocon(request):
+    noconid = request.POST['noconid']
+    noconname = request.POST['noconname']
+    noconcon = request.POST['noconcon']
+    noconkind = request.POST['noconkind']
+    noconresp = request.POST['noconresp']
 
-    supp = supply(supply_id = suppid, supply_name = suppname, supply_amt = suppamt, resp_id = suppresp)
-    supp.save()
+    nocon = nonconsumable(nocon_id = noconid, nocon_name = noconname, nocon_con = noconcon, nocon_kind = noconkind, resp_id = noconresp )
+    nocon.save()
 
     return redirect('/logistics')
 
+def add_employee(request):
+    return render(request, 'add_employee.html')
 def push_add_employee(request):
     empid = request.POST['empid']
     empname = request.POST['empname']
@@ -194,6 +196,14 @@ def push_add_employee(request):
 
     return redirect('/employee')
 
+def add_child(request):
+    em = employee.objects.filter(employee_department = "Pengasuh")
+    pr = parent.objects.all()
+    context = {
+        "pr":pr,
+        "em": em
+    }
+    return render(request, 'add_kid.html', context)
 def push_add_kid(request):
     kidid = request.POST['kidid']
     kidname = request.POST['kidname']
@@ -211,6 +221,8 @@ def push_add_kid(request):
 
     return redirect('/children')
 
+def add_parent(request):
+    return render(request, 'add_parent.html')
 def push_add_parent(request):
     prid = request.POST['prid']
     prmname = request.POST['prmname']
@@ -247,24 +259,17 @@ def deleteem(request, em_id):
 
     return redirect('/employee')
 
-def deleteeq(request, eq_id):
+def deletecon(request, con_id):
 
-    eq = equipment.objects.get(equipment_id = eq_id)
-    eq.delete()
-
-    return redirect('/logistics')
-
-def deletetoy(request, toy_id):
-
-    toys = toy.objects.get(toy_id = toy_id)
-    toys.delete()
+    con = consumable.objects.get(con_id = con_id)
+    con.delete()
 
     return redirect('/logistics')
 
-def deletesupp(request, supp_id):
+def deletenocon(request, nocon_id):
 
-    supp = supply.objects.get(supply_id = supp_id)
-    supp.delete()
+    nocon = nonconsumable.objects.get(nocon_id = nocon_id)
+    nocon.delete()
 
     return redirect('/logistics')
 
@@ -354,72 +359,55 @@ def push_edit_kid(request):
 
     return redirect('/children')
 
-def edit_eq(request, eq_id):
-    eq = equipment.objects.get(equipment_id = eq_id)
+def edit_con(request, con_id):
+    con = consumable.objects.get(con_id = con_id)
     em = employee.objects.filter(employee_department = "Logistik")
     context = {
-        'eq': eq,
-        "em":em
-    }
-
-    return render(request, "edit_item.html", context)
-def push_edit_eq(request):
-    eqid = request.POST['itemid']
-    new_eqname = request.POST['itemname']
-    new_eqcon = request.POST['itemcon']
-    new_eqresp = request.POST['itemresp']
-
-    eq = equipment.objects.get(equipment_id = eqid)
-    eq.equipment_name = new_eqname
-    eq.equipment_con = new_eqcon
-    eq.resp_id = new_eqresp
-    eq.save()
-
-    return redirect('/logistics')
-
-def edit_toy(request, toy_id):
-    toys = toy.objects.get(toy_id = toy_id)
-    em = employee.objects.filter(employee_department = "Logistik")
-    context = {
-        'toy': toys,
-        "em":em
-    }
-
-    return render(request, "edit_toy.html", context)
-def push_edit_toy(request):
-    toyid = request.POST['toyid']
-    new_toyname = request.POST['toyname']
-    new_toycon = request.POST['toycon']
-    new_toyresp = request.POST['toyresp']
-
-    toys = toy.objects.get(toy_id = toyid)
-    toys.toy_name = new_toyname
-    toys.toy_con = new_toycon
-    toys.resp_id = new_toyresp
-    toys.save()
-
-    return redirect('/logistics')
-
-def edit_supp(request, supp_id):
-    supp = supply.objects.get(supply_id = supp_id)
-    em = employee.objects.filter(employee_department = "Logistik")
-    context = {
-        'sp': supp,
+        "con": con,
         "em": em
     }
 
-    return render(request, "edit_supply.html", context)
-def push_edit_supp(request):
-    suppid = request.POST['suppid']
-    new_suppname = request.POST['suppname']
-    new_suppamt = request.POST['suppamt']
-    new_suppresp = request.POST['suppresp']
+    return render(request, "edit_consumable.html", context)
+def push_edit_con(request):
+    conid = request.POST['conid']
+    new_conname = request.POST['conname']
+    new_conamt = request.POST['conamt']
+    new_conresp = request.POST['conresp']
+    new_conkind = request.POST['conkind']
 
-    sp = supply.objects.get(supply_id = suppid)
-    sp.supply_name = new_suppname
-    sp.supply_amt = new_suppamt
-    sp.resp_id = new_suppresp
-    sp.save()
+    con = consumable.objects.get(con_id = conid)
+    con.con_name = new_conname
+    con.con_amt = new_conamt
+    con.con_kind = new_conkind
+    con.resp_id = new_conresp
+    
+    con.save()
+
+    return redirect('/logistics')
+
+def edit_nocon(request, nocon_id):
+    nocon = nonconsumable.objects.get(nocon_id = nocon_id)
+    em = employee.objects.filter(employee_department = "Logistik")
+    context = {
+        "nocon": nocon,
+        "em": em
+    }
+
+    return render(request, "edit_nonconsumable.html", context)
+def push_edit_nocon(request):
+    noconid = request.POST['noconid']
+    new_noconname = request.POST['noconname']
+    new_noconcon = request.POST['noconcon']
+    new_noconresp = request.POST['noconresp']
+    new_noconkind = request.POST['noconkind']
+
+    nocon = nonconsumable.objects.get(nocon_id = noconid)
+    nocon.con_name = new_noconname
+    nocon.con_amt = new_noconcon
+    nocon.con_kind = new_noconkind
+    nocon.resp_id = new_noconresp
+    
+    nocon.save()
 
     return redirect('/logistics')
 
@@ -444,6 +432,7 @@ def push_att_kid(request):
     return redirect('/children')
     
 
+#reset attendance
 def res_att(request):
     new_incon = request.POST['kidatt']
 

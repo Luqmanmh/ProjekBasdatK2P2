@@ -73,6 +73,20 @@ a {
     text-align: center;
 }
 
+.allin>.uncons{
+    display: none;
+}
+.allin>.cons{
+    display: block;
+}
+
+.allin.change>.cons{
+    display: none;
+}
+.allin.change>.uncons{
+    display: block;
+}
+
 .logpanel{
     display: flex;   
     align-items: flex-start;
@@ -114,9 +128,20 @@ a {
     height: 100%;
 }
 
+.logtop{
+    text-align: center;
+    display: flex;
+    gap: 72rem;
+}
+
 .linksl {
     text-align: left;
-    margin-left: 2.5rem;
+    margin: auto .5rem;
+}
+
+.linksr {
+    text-align: right;
+    margin: auto .5rem;    
 }
 
 .retbtn {

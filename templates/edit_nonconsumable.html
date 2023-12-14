@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/style_add_eq.css' %}">
+{% endblock %}
+{% block title %}Edit Perlengkapan{% endblock title %}
+{% block content %}
+<nav>
+    <ul>
+        <li class="logo">thitiphan</li>
+    </ul>
+    <ul>
+        <li class="moto">Karena semua hanyalah titipan</li>
+    </ul>
+</nav>
+<section id="main">
+    <div class="linksl">
+        <a class="retbtn" href="/logistics/">Kembali</a>
+    </div>
+    <h1><i class="fa-solid fa-pen-to-square"></i> Edit Perlengkapan</h1>
+    <form method="post" action="/push_edit_nocon/">
+        {% csrf_token %}
+            <input type="hidden" id="noconid" name="noconid" value="{{nocon.nocon_id}}">
+            <label for="noconname">Nama:</label>
+            <input type="text" id="noconname" name="noconname" value="{{nocon.nocon_name}}">
+            <br> <br>
+            <label for="noconcon">Kondisi:</label>
+            <select id="noconcon" name="noconcon">
+                <option value="Baik" {% if nocon.nocon_con == "Baik" %} selected {% endif %}>Baik</option>
+                <option value="Buruk" {% if nocon.nocon_con == "Buruk" %} selected {% endif %}>Buruk</option>
+            </select>
+            <br><br>
+                    <label for="noconkind">Jenis:</label>
+            <select name="noconkind" id="noconkind">
+                <option selected disabled hidden>Pilih<option>
+                <option value="Furn" {% if nocon.nocon_kind == "Furn" %} selected {% endif %}>Furniture</option>
+                <option value="Toy" {% if nocon.nocon_kind == "Toy" %} selected {% endif %}>Toy</option>
+            </select>
+            <br><br>
+            <label for="noconresp">PJ:</label>
+            <select name="noconresp" id="noconresp">
+                {% for i in em %}
+                <option value="{{i.employee_id}}" {% if i.employee_id == nocon.resp_id %} selected {% endif %}>{{i.employee_id}} - {{i.employee_name}}</option>
+                {% endfor %}
+            </select>
+            <br> <br>
+
+            <input type="submit" id="noconsubmit" value="Submit">
+    </form>
+<section>
+{% endblock content %}

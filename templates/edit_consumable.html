@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/style_add_eq.css' %}">
+{% endblock %}
+{% block title %}Edit Persediaan{% endblock title %}
+{% block content %}
+<nav>
+    <ul>
+        <li class="logo">thitiphan</li>
+    </ul>
+    <ul>
+        <li class="moto">Karena semua hanyalah titipan</li>
+    </ul>
+</nav>
+<section id="main">
+    <div class="linksl">
+        <a class="retbtn" href="/logistics/">Kembali</a>
+    </div>
+    <h1><i class="fa-solid fa-pen-to-square"></i> Edit Consumable</h1>
+    <form method="post" action="/push_edit_con/">
+        {% csrf_token %}
+        <input type="hidden" id="conid" name="conid" value="{{con.con_id}}">
+
+        <label for="conname">Nama:</label>
+        <input type="text" id="conname" name="conname" value="{{con.con_name}}">
+        <br> <br>
+        <label for="conamt">Jumlah:</label>
+        <input type="text" id="conamt" name="conamt" value="{{con.con_amt}}"> 
+        <br> <br>
+        <label for="conkind">Jenis:</label>
+        <select name="conkind" id="conkind">
+            <option selected disabled hidden>Pilih<option>
+            <option value="Food" {% if con.con_kind == "Food" %} selected {% endif %}>Makanan</option>
+            <option value="Med" {% if con.con_kind == "Med" %} selected {% endif %}>Obat</option>
+            <option value="Util" {% if con.con_kind == "Util" %} selected {% endif %}>Utility</option>
+        </select>
+        <br><br>
+        <label for="conrecon">PJ:</label>
+        <select name="conresp" id="conresp">
+            {% for i in em %}
+            <option value="{{i.employee_id}}" {% if i.employee_id == con.resp_id %} selected {% endif %}>{{i.employee_id}} - {{i.employee_name}}</option>
+            {% endfor %}
+        </select>
+        <br> <br>
+        <input type="submit" id="itemsubmit" value="Submit">
+    </form>
+</section>
+{% endblock content %}

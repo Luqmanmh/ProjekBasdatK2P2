@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/style_add_eq.css' %}">
+{% endblock %}
+{% block title %}Tambah Consumable{% endblock title %}
+{% block content %}
+<nav>
+    <ul>
+        <li class="logo">thitiphan</li>
+    </ul>
+    <ul>
+        <li class="moto">Karena semua hanyalah titipan</li>
+    </ul>
+</nav>
+<section id="main">
+    <div class="linksl">
+        <a class="retbtn" href="/logistics/">Kembali</a>
+    </div>
+    <h1><i class="fa-solid fa-circle-plus"></i> Tambah Consumable</h1>
+    <form method="post" action="/push_add_con/">
+        {% csrf_token %}
+        <label for="conid">ID:</label>
+        <input type="text" id="conid" name="conid">
+        <br> <br>
+        <label for="conname">Nama:</label>
+        <input type="text" id="conname" name="conname">
+        <br> <br>
+        <label for="conamt">Jumlah:</label>
+        <input type="text" id="conamt" name="conamt">
+        <br> <br>
+        <label for="conkind">Jenis:</label>
+        <select name="conkind" id="conkind">
+            <option selected disabled hidden>Pilih<option>
+            <option value="Food">Makanan</option>
+            <option value="Med">Obat</option>
+            <option value="Util">Utility</option>
+        </select>
+        <br><br>
+        <label for="conresp">PJ:</label>
+        <select name="conresp" id="conresp">
+            <option selected disabled hidden>Pilih<option>
+            {% for i in em %}
+            <option value="{{i.employee_id}}">{{i.employee_id}} - {{i.employee_name}}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+        <input type="submit" id="itemsubmit" value="Submit">
+    </form>
+</section>
+{% endblock content %}

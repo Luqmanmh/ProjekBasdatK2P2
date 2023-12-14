@@ -15,78 +15,152 @@
 </nav>
 
 <section id="tableall">
-    <div class="linksl">
-        <a  class="retbtn" href="/inner/">Return</a>
+    <div class="logtop">
+        <div class="linksl">
+            <a  class="retbtn" href="/inner/">Return</a>
+        </div>
+        <div class="linksr">
+            <a href="javascript:void(0)" onclick="swaptable()" class="spbtn">
+                <i class="fa-solid fa-arrows-rotate"></i>
+            </a>
+        </div>
     </div>
+
     <h1><i class="fa-solid fa-folder"></i> Panel Logistik</h1>
     <br>
-    <div class="logpanel">  
-        <div class="logtable">
-            <h4><i class="fa-solid fa-cart-flatbed fa-flip-horizontal"></i> Perlengkapan</h4>
-            <table>
-                <tr>
-                    <th>ID Perlengkapan</th>
-                    <th>Nama Perlengkapan</th>
-                    <th class="simp">Kondisi</th>
-                    <th>PJ</th>
-                    <th>Actions</th>
-                </tr>
-                {% for i in eq_dt %}
-                <tdr>
-                    <td>{{i.eqs.equipment_id}}</td>
-                    <td>{{i.eqs.equipment_name}}</td>
-                    <td class="simp">{{i.eqs.equipment_con}}</td>
-                    <td>{{i.employees.employee_name}}</td>
-                    <td><a class="retbtn1" href="/deleteeq/{{i.eqs.equipment_id}}">Hapus</a> <br> <br> <a class="spbtn1" href = "/editeq/{{i.eqs.equipment_id}}">Edit</a></td>
-                </tr>
-                {% endfor %}
-            </table>
-            <a class="spbtn" href="/add_item/">Tambah Perlengkapan Baru</a>
+    <div id="inall" class="allin">
+        <div class="cons">
+            <h3>Consumable</h3>
+            <div class="logpanel">  
+                <div class="logtable">
+                    <h4><i class="fa-solid fa-burger"></i> Makanan</h4>
+                    <table>
+                        <tr>
+                            <th>ID Makanan</th>
+                            <th>Nama Makanan</th>
+                            <th class="simp">Jumlah</th>
+                            <th>PJ</th>
+                            <th>Actions</th>
+                        </tr>
+                        {% for i in food %}
+                        <tdr>
+                            <td>{{i.foods.con_id}}</td>
+                            <td>{{i.foods.con_name}}</td>
+                            <td class="simp">{{i.foods.con_amt}}</td>
+                            <td>{{i.emps.employee_name}}</td>
+                            <td><a class="retbtn1" href="/deletecon/{{i.foods.con_id}}">Hapus</a> <br> <br> <a class="spbtn1" href = "/editcon/{{i.foods.con_id}}">Edit</a></td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+                <div class="logtable">
+                    <h4><i class="fa-solid fa-prescription-bottle-medical"></i> Obat</h4>
+                    <table>
+                        <tr>
+                            <th>ID Obat</th>
+                            <th>Nama Obat</th>
+                            <th class="simp">Jumlah</th>
+                            <th>PJ</th>
+                            <th>Actions</th>
+                        </tr>
+                        {% for i in med %}
+                        <tdr>
+                            <td>{{i.meds.con_id}}</td>
+                            <td>{{i.meds.con_name}}</td>
+                            <td class="simp">{{i.meds.con_amt}}</td>
+                            <td>{{i.emps.employee_name}}</td>
+                            <td><a class="retbtn1" href="/deletecon/{{i.meds.con_id}}">Hapus</a> <br> <br> <a class="spbtn1" href = "/editcon/{{i.meds.con_id}}">Edit</a></td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+                <div class="logtable">
+                    <h4><i class="fa-solid fa-toilet-paper"></i> Utility</h4>
+                    <table>
+                        <tr>
+                            <th>ID Utility</th>
+                            <th>Nama Utility</th>
+                            <th class="simp">Jumlah</th>
+                            <th>PJ</th>
+                            <th>Actions</th>
+                        </tr>
+                        {% for i in util %}
+                        <tr>
+                            <td>{{i.utils.con_id}}</td>
+                            <td>{{i.utils.con_name}}</td>
+                            <td class="simp">{{i.utils.con_amt}}</td>
+                            <td>{{i.emps.employee_name}}</td>
+                            <td class="spact"><a class="retbtn1" href="/deletesupp/{{i.utils.con_id}}">Hapus</a> <br> <br> <a class="spbtn1" href = "/editcon/{{i.utils.con_id}}">Edit</a></td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                    
+                </div>
+            </div>
+            <br>
+            <a  class="spbtn" href="/add_con/">Tambah Consumable Baru</a>
         </div>
-        <div class="logtable">
-            <h4><i class="fa-solid fa-car-side fa-flip-horizontal"></i> Mainan</h4>
-            <table>
-                <tr>
-                    <th>ID Mainan</th>
-                    <th>Nama Mainan</th>
-                    <th class="simp">Kondisi</th>
-                    <th>PJ</th>
-                    <th>Actions</th>
-                </tr>
-                {% for i in toy_dt %}
-                <tdr>
-                    <td>{{i.toys.toy_id}}</td>
-                    <td>{{i.toys.toy_name}}</td>
-                    <td class="simp">{{i.toys.toy_con}}</td>
-                    <td>{{i.employees.employee_name}}</td>
-                    <td><a class="retbtn1" href="/deletetoy/{{i.toys.toy_id}}">Hapus</a> <br> <br> <a class="spbtn1" href = "/edittoy/{{i.toys.toy_id}}">Edit</a></td>
-                </tr>
-                {% endfor %}
-            </table>
-            <a  class="spbtn" href="/add_toy/">Tambah Mainan Baru</a>
-        </div>
-        <div class="logtable">
-            <h4><i class="fa-solid fa-boxes-stacked"></i> Persediaan</h4>
-            <table>
-                <tr>
-                    <th>ID Persediaan</th>
-                    <th>Nama persediaan</th>
-                    <th class="simp">Jumlah</th>
-                    <th>PJ</th>
-                    <th>Actions</th>
-                </tr>
-                {% for i in sp_dt %}
-                <tr>
-                    <td>{{i.sps.supply_id}}</td>
-                    <td>{{i.sps.supply_name}}</td>
-                    <td class="simp">{{i.sps.supply_amt}}</td>
-                    <td>{{i.employees.employee_name}}</td>
-                    <td class="spact"><a class="retbtn1" href="/deletesupp/{{i.sps.supply_id}}">Hapus</a> <br> <br> <a class="spbtn1" href = "/editsupp/{{i.sps.supply_id}}">Edit</a></td>
-                </tr>
-                {% endfor %}
-            </table>
-            <a  class="spbtn" href="/add_supply/">Tambah Persediaan Baru</a>
+        <div class="uncons">
+            <h3>Non-Consumable</h3>
+            <div class="logpanel">  
+                <div class="logtable">
+                    <h4><i class="fa-solid fa-couch"></i> Furniture</h4>
+                    <table>
+                        <tr>
+                            <th>ID Furniture</th>
+                            <th>Nama furniture</th>
+                            <th class="simp">Kondisi</th>
+                            <th>PJ</th>
+                            <th>Actions</th>
+                        </tr>
+                        {% for i in furn %}
+                        <tdr>
+                            <td>{{i.furns.nocon_id}}</td>
+                            <td>{{i.furns.nocon_name}}</td>
+                            <td class="simp">{{i.furns.nocon_con}}</td>
+                            <td>{{i.emps.employee_name}}</td>
+                            <td><a class="retbtn1" href="/deletenocon/{{i.furns.nocon_id}}">Hapus</a> <br> <br> <a class="spbtn1" href = "/editnocon/{{i.furns.nocon_id}}">Edit</a></td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+                <div class="logtable">
+                    <h4><i class="fa-solid fa-car-side fa-flip-horizontal"></i> Mainan</h4>
+                    <table>
+                        <tr>
+                            <th>ID Mainan</th>
+                            <th>Nama Mainan</th>
+                            <th class="simp">Kondisi</th>
+                            <th>PJ</th>
+                            <th>Actions</th>
+                        </tr>
+                        {% for i in toy %}
+                        <tr>
+                            <td>{{i.toys.nocon_id}}</td>
+                            <td>{{i.toys.nocon_name}}</td>
+                            <td class="simp">{{i.toys.nocon_con}}</td>
+                            <td>{{i.emps.employee_name}}</td>
+                            <td><a class="retbtn1" href="/deletenocon/{{i.toys.nocon_id}}">Hapus</a> <br> <br> <a class="spbtn1" href = "/editnocon/{{i.toys.nocon_id}}">Edit</a></td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+            <br>
+            <a  class="spbtn" href="/add_nocon/">Tambah Non-Consumable Baru</a>
         </div>
     </div>
 </section>
 {% endblock content %}
+{% block script %}
+<script>
+    function swaptable() {
+        var x = document.getElementById("inall");
+        if (x.className === "allin") {
+            x.className += " change";
+        } else {
+            x.className = "allin";
+        }
+    }
+</script>
+{% endblock %}

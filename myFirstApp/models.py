@@ -12,37 +12,22 @@ class employee(models.Model):
     employee_phone = models.CharField(max_length=14)
     employee_department = models.CharField(max_length=12, choices=DP_DT)
 
-class toy(models.Model):
+class nonconsumable(models.Model):
     con = [("Buruk", "Buruk"), ("Baik", "Baik")]
-    toy_id = models.CharField(max_length=7, primary_key=True)
-    toy_name = models.CharField(max_length=100)
-    toy_con = models.CharField(max_length=5, choices=con)
-    resp = models.ForeignKey(employee, null=True, on_delete=models.SET_NULL)
+    kind = [("Furn", "Furn"), ("Toy", "Toy")]
+    nocon_id = models.CharField(max_length=7, primary_key=True)
+    nocon_name = models.CharField(max_length=100)
+    nocon_con = models.CharField(max_length=5, choices=con)
+    nocon_kind = models.CharField(max_length=10, choices=kind)
+    resp = models.ForeignKey(employee, null=True, on_delete=models.PROTECT)
 
-    class Meta:
-        managed = True
-
-
-class equipment(models.Model):
-    con = [("Buruk", "Buruk"), ("Baik", "Baik")]
-    equipment_id = models.CharField(max_length=7, primary_key=True)
-    equipment_name = models.CharField(max_length=100)
-    equipment_con = models.CharField(max_length=5, choices=con)
-    resp = models.ForeignKey(employee, null=True, on_delete=models.SET_NULL)
-
-    class Meta:
-        managed = True
-
-
-class supply(models.Model):
-    supply_id = models.CharField(max_length=7, primary_key=True)
-    supply_name = models.CharField(max_length=100)
-    supply_amt = models.CharField(max_length=100)
-    resp = models.ForeignKey(employee, null=True, on_delete=models.SET_NULL)
-
-    class Meta:
-        managed = True
-
+class consumable(models.Model):
+    kind = [("Food", "Food"), ("Med", "Med"), ("Util", "Util")]
+    con_id = models.CharField(max_length=7, primary_key=True)
+    con_name = models.CharField(max_length=100)
+    con_amt = models.CharField(max_length=100)
+    con_kind = models.CharField(max_length=10, choices=kind)
+    resp = models.ForeignKey(employee, null=True, on_delete=models.PROTECT)
 
 class parent(models.Model):
     parent_id = models.CharField(max_length=7, primary_key=True)
@@ -64,7 +49,7 @@ class child(models.Model):
     out_time = models.TimeField()
     in_con = models.CharField(max_length=6, choices=con)
     parent = models.ForeignKey(parent, on_delete=models.CASCADE)
-    care_taker = models.ForeignKey(employee, null=True, on_delete=models.SET_NULL)
+    care_taker = models.ForeignKey(employee, null=True, on_delete=models.PROTECT)
 
     class Meta:
         managed = True
